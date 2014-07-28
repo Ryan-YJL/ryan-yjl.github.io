@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+    <head>
+        <link href="http://gmpg.org/xfn/11" rel="profile">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        <!-- Enable responsiveness on mobile devices-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+        
+             
+             
+        
+        <title>Posts tagged "redhat" &middot; Ryan Yang</title>
+        <!-- SEO -->
+        <meta property="og:title" content="Posts tagged "redhat" &middot; Ryan Yang" />
+        <meta name="description" content="Posts tagged "redhat""/>
+        <meta property="og:description" content="Posts tagged "redhat"" />
+        
+        
+        <meta name="author" content="Ryan Yang" />
+        <link rel="canonical" href="/tag/redhat/index.html" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="/tag/redhat/index.html" />
+        <meta property="og:site_name" content="Ryan Yang" />
+        <meta property="article:publisher" content="https://www.facebook.com/RyanYJL" />
+        <meta property="article:section" content="Article" />
+        <meta property="og:image" content="http://0.0.0.0:4000/assets/img/logo.png" />
+        <meta property="og:image:width" content="300" />
+        <meta property="og:image:height" content="300" />
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="@RyanYJL"/>
+        <meta name="twitter:domain" content="Ryan-YJL"/>
+        <meta name="twitter:creator" content="@RyanYJL"/>
+  
+        <!-- CSS -->
+        <link rel="stylesheet" href="/assets/webfonts/font.css">
+        <link rel="stylesheet" href="/assets/css/poole.css">
+        <link rel="stylesheet" href="/assets/css/syntax.css">
+        <link rel="stylesheet" href="/assets/css/hyde.css">
+        <link rel="stylesheet" href="/assets/css/font-awesome.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
+        <link rel="stylesheet" href="/assets/plugins/magnific-popup/magnific-popup.css"> 
+        <script src="/assets/plugins/magnific-popup/jquery.magnific-popup.js"></script> 
+
+        <!-- Icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/apple-touch-icon-144-precomposed.png">
+        <link rel="shortcut icon" href="/assets/favicon.ico">
+
+        <!-- RSS -->
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="http://0.0.0.0:4000/atom.xml">
+        <script>
+        $(document).ready(function() {
+            $('.post img').each(function(i,e){
+                var img = $(e);
+                img.wrapAll('<a href="'+img.attr('src')+'" class="image-link"></a>');
+            });
+            $(document).find('.image-link').magnificPopup({type:'image'});
+        });
+        </script>
+
+    </head>
+    <body>
+
+    <div class="topbar">
+    <div class="container">
+        <div class="topbar-content">
+            <div class="brand">
+                <a href="/">
+                    <span>Ryan</span>YJL
+                </a>
+            </div>
+            <div class="menu-container">
+                <div class="menu clearfix">
+                    <div><a class="" href="http://0.0.0.0:4000/category/everything/">Everything</a></div>
+                    <div><a class="" href="http://0.0.0.0:4000/category/web/">Web</a></div>
+                    <div><a class="" href="/tags/">Tags</a></div>
+                    <div><a class="" href="http://0.0.0.0:4000/about/">About</a></div>
+                    <div></div>
+                    <div class="social">
+<!--                        
+                        <a class="social-icon" href=""><span class="fa fa-tumblr"></span></a>
+                        -->
+                        
+                        <a class="social-icon" href="https://twitter.com/RyanYJL"><span class="fa fa-twitter"></span></a>
+                        
+                        
+                        <a class="social-icon" href="mailto:ryan.yjl@gmail.com"><span class="fa fa-envelope"></span></a>
+                        
+                        <a class="social-icon" href="http://0.0.0.0:4000/atom.xml"><span class="fa fa-rss"></span></a>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+
+    <div class="content container">
+        
+        <div class="breadcrumbs">
+            <a href="http://0.0.0.0:4000">Home</a> &raquo; 
+            <a href="http://0.0.0.0:4000/tags/">Tags</a> &raquo;
+            <a href="http://0.0.0.0:4000/tag/redhat/">Redhat</a>
+        </div>
+        <h1 class="page-title non-impt">Tagged 'Redhat'</h1>
+    
+    
+        <div class="posts">
+            
+            
+            <div class="post">
+              <h2 class="post-title">
+                <a href="/web/2013/11/20/package-management-command-cheat-sheet-for-redhat-linux.html">
+                  Package management command cheat sheet for Redhat Linux
+                </a>
+              </h2>
+                <div class="post-date">November 20, 2013</div>
+              <p>Here is my list of mostly frequently used <strong>yum</strong> commmnds that will help you handle most if not all of the package management <u>you will ever need</u>.</p>
+
+<h2>Updating repositories</h2>
+
+<p>If you are using <strong>Fedora</strong>, then you usually have the latest repository without doing much.</p>
+
+<p>If you are using <strong>CentOS</strong> or <strong>RHEL</strong>, then you best bet is to get the repo from <a href="https://webtatic.com/projects/yum-repository/">webtatic</a>.
+The installation of the repo is simply &quot;rpm -Uvh&quot; followed by the repo url.</p>
+
+<h3>YUM</h3>
+
+<p>Searching for package</p>
+
+<div class="highlight"><pre><code class="bash"><span class="c"># search package name &amp; description by term</span>
+<span class="nv">$ </span>yum search tomcat
+
+<span class="c"># search package name that start with term</span>
+<span class="nv">$ </span>yum list tomcat
+tomcat7-common
+tomcat7
+tomcat7-admin
+tomcat7-examples
+tomcat7-docs
+tomcat7-user
+
+<span class="c"># list all installed packages in system </span>
+<span class="nv">$ </span>yum list installed
+</code></pre></div>
+
+<p>Upgrading packages</p>
+
+<div class="highlight"><pre><code class="bash"><span class="c"># upgrade packages (safe)</span>
+<span class="nv">$ </span>yum update
+
+<span class="c"># upgrade packages and remove existing obsolete packages</span>
+<span class="c"># which you may be using</span>
+<span class="nv">$ </span>yum upgrade
+</code></pre></div>
+
+<p>Installing packages</p>
+
+<div class="highlight"><pre><code class="bash"><span class="c"># install specific package</span>
+<span class="nv">$ </span>yum install tomcat7
+
+<span class="c"># remove wildcard package</span>
+<span class="nv">$ </span>yum install <span class="s1">&#39;tomcat7*&#39;</span>
+
+<span class="c"># install package group</span>
+<span class="nv">$ </span>yum groupinstall <span class="s1">&#39;Development Tools&#39;</span>
+</code></pre></div>
+
+<p>Removing packages</p>
+
+<div class="highlight"><pre><code class="bash"><span class="c"># install specific package</span>
+<span class="nv">$ </span>yum erase tomcat7
+
+<span class="c"># remove wildcard package</span>
+<span class="nv">$ </span>yum erase <span class="s1">&#39;tomcat7*&#39;</span>
+</code></pre></div>
+
+<p>Checking for broken packages/ dependencies</p>
+
+<div class="highlight"><pre><code class="bash"><span class="c"># update package cache and check for broken dependencies</span>
+<span class="nv">$ </span>yum check
+
+<span class="c"># check for packages to update</span>
+<span class="nv">$ </span>yum check-update
+
+<span class="c"># reinstall package and dependencies</span>
+<span class="nv">$ </span>yum reinstall
+</code></pre></div>
+
+<p>Cleaning up archive files</p>
+
+<div class="highlight"><pre><code class="bash"><span class="c"># delete all cached data</span>
+<span class="nv">$ </span>yum clean
+</code></pre></div>
+
+              <div class="post-readmore">
+                  <a href="/web/2013/11/20/package-management-command-cheat-sheet-for-redhat-linux.html" class="more-link">Read More &rarr;</a>
+              </div>
+            </div>
+            
+            
+        </div>
+    
+
+    
+        
+    
+
+        <div class="pagination">
+            
+              <span class="pagination-item older">Older</span>
+            
+            
+              <span class="pagination-item newer">Newer</span>
+            
+        </div>
+
+    
+    
+
+    </div>
+
+    <div class="footer">
+    <div class="container">
+        <p class="copyright">&copy; 2014. Ryan-YJL. Powered by <a href="http://jekyllrb.com/">Jekyll</a>. Hosted by <a href="https://github.com">GitHub</a>.
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." style="float: right;"><img alt="Creative Commons License" style="margin-top: 1px; border-width: 0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a> 
+    </div>
+</div>
+    
+  </body>
+</html>

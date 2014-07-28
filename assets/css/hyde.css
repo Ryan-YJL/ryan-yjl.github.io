@@ -1,0 +1,289 @@
+/* *  __                  __
+* /\ \                /\ \
+* \ \ \___   __  __   \_\ \     __
+*  \ \  _ `\/\ \/\ \  /'_` \  /'__`\
+*   \ \ \ \ \ \ \_\ \/\ \_\ \/\  __/
+*    \ \_\ \_\/`____ \ \___,
+_\ \____\
+*     \/_/\/_/`/___/> \/__,
+_ /\/____/
+*                /\___/
+*                \/__/
+*
+* Designed,
+built,
+and released under MIT license by @mdo. Learn more at
+* https://github.com/poole/hyde. */
+
+
+/* * Contents
+*
+* Global resets
+* Sidebar
+* Container
+* Reverse layout
+* Themes */
+
+
+/* * Global resets
+*
+* Update the foundational and global aspects of the page. */
+
+html {
+}
+@media (min-width:48rem) {
+  html {
+    font-size: 16px;
+  }
+}
+@media (min-width:58rem) {
+  html {
+    font-size: 20px;
+  }
+}
+body {
+    min-width: 34rem;
+}
+h1.brand {
+  margin-top: 0;
+
+}
+.impt {
+  background-color: #fffd53;
+  padding: 0 8px;
+}
+.clearfix {
+  clear: both;
+}
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.lead {
+  font-size: 1rem;
+}
+.copyright {
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+.brand {
+  font-family: "Avenir Next LT W01 Bold";
+  font-size: 1.2rem;
+  letter-spacing: 7px;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  float: left;
+  text-transform: uppercase;
+}
+.brand a {
+  color: #4369bb;
+}
+.brand a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+.brand span {
+    font-family: "Avenir Next W01 Thin";
+}
+.menu-container {
+    float: right;
+}
+.menu {
+    float: none;
+    clear: both;
+}
+.menu div {
+    float: left;
+    display: inline;
+}
+.menu div a {
+    display: block;
+    padding: 0 0.5rem;
+}
+.menu div a:hover,.menu div a:focus, .menu div a.active {
+    background-color: #213a72;
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu .social {
+
+}
+.menu .social-icon {
+
+}
+.menu .social-icon .fa {
+  font-size: 1rem;
+}
+.menu .social a {
+    display: block;
+    float: left;
+    line-height: 3rem;
+}
+.breadcrumbs {
+    font-size: 0.8rem;
+    line-height: 1rem;
+    margin: 0 0 1rem 0;
+}
+.breadcrumbs,
+.breadcrumbs a {
+    color: #969696;
+}
+.portfolio {
+    margin: 0 -0.5rem;
+}
+img.portfolio-logo {
+    display: inline;
+    border: 1px solid #ccc;
+    margin: 0 0.5rem 1rem 0.5rem;
+    
+}
+.tag-archive {
+    margin: 0 -1rem;
+    min-height: 400px;
+    clear:both;
+}
+.tag-link {
+    display: inline-block;
+    float: left;
+    margin: 0 1rem 1rem 1rem; 
+}
+.tag-link-count {
+    background: #515151;
+    color: #fff;
+    display: inline-block;
+    padding: 0.14rem 0.3rem;
+    line-height: 0.6rem;
+    font-size: 0.6rem;
+    margin-left: 0.5rem;
+}
+
+/* * Sidebar
+*
+* Flexible banner for housing site name,
+intro,
+and "footer" content. Starts
+* out above content in mobile and later moves to the side with wider viewports. */
+.topbar {
+  height: 3rem;
+  line-height: 3rem;
+  color: rgba(255, 255, 255, .5);
+  background-color: #274486;
+}
+.topbar a {
+    color: #fff;
+}
+.topbar-content {
+    position: relative;
+}
+.topbar > .container {
+    position: relative;
+}
+@media (min-width:48rem) {
+  .topbar {
+  }
+}
+
+/* About section */
+
+.tags {
+  margin: 0 0 1rem 0;
+  padding: 0;
+  font-size: 0.8rem;
+}
+.tags li {
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+  margin: 0 0.5rem 0.5rem 0;
+}
+.tags li a {
+  display: block;
+  background-color: #274486;
+  color: #fff;
+  padding: 0.1rem 0.5rem;
+}
+.tags li a:hover,
+.tags li a:focus,
+.tags li a.selected {
+  background-color: #213a72;
+  text-decoration: none;
+}
+
+/* Sticky topbar
+*
+* Add the `topbar-sticky` class to the topbar's container to affix it the
+* contents to the bottom of the topbar in tablets and up. */
+@media (min-width:48rem) {
+  .topbar-sticky {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+/* Archive
+-------------------------------------------------- */
+.tag-archive-section h2 {
+  margin-top: 0;
+  padding-top: 4rem;
+}
+.archive-item {
+  margin-bottom: 1rem;
+  overflow: auto; /* clearfix */
+
+}
+.archive-title {
+  
+}
+.archive-date {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media (min-width: 34rem) {
+  .archive-item {
+    margin-bottom: .5rem;
+  }
+  .archive-date {
+    float: right;
+    margin-left: 1rem;
+  }
+}
+
+.sidebar {
+    width: 11rem;
+    padding: 4rem 1rem 0 0;
+    position: absolute;
+    top: 0;
+    left: 1rem;
+}
+.container.with-sidebar {
+    position: relative;
+}
+.container.with-sidebar .content {
+    margin-left: 12rem;
+}
+/* Container
+*
+* Align the contents of the site above the proper threshold with some margin-fu
+* with a 25%-wide `.topbar`. */
+.content {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+@media (min-width:48rem) {
+  .content {
+    max-width: 38rem;
+  }
+}
+@media (min-width:64rem) {
+  .content {
+      
+  }
+}

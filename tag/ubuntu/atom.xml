@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+   	<title>Ryan Yang - Tagged "ubuntu"</title>
+   
+   <link>http://ryan-yjl.com</link>
+   <description>Ryan Yang</description>
+   <language>en-us</language>
+   <managingEditor>Ryan Yang J.L.</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	Included file atom_post.xml not found in _includes directory
+
+	Included file atom_post.xml not found in _includes directory
+
+</channel>
+</rss>

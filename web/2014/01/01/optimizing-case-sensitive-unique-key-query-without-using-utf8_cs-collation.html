@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+      <head>
+        <link href="http://gmpg.org/xfn/11" rel="profile">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        <!-- Enable responsiveness on mobile devices-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+        <title>
+            
+            Optimizing Case sensitive unique key query without using utf8_bin-collation &middot; Ryan Yang
+            
+        </title>
+
+        <!-- SEO -->
+        <meta property="og:title" content="Optimizing Case sensitive unique key query without using utf8_bin-collation" />
+        <meta name="description" content=""/>
+        <meta property="og:description" content="" />
+
+        
+        <meta name="author" content="Ryan Yang" />
+        <link rel="canonical" href="/web/2014/01/01/optimizing-case-sensitive-unique-key-query-without-using-utf8_cs-collation.html" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="/web/2014/01/01/optimizing-case-sensitive-unique-key-query-without-using-utf8_cs-collation.html" />
+        <meta property="og:site_name" content="Ryan Yang" />
+        <meta property="article:publisher" content="https://www.facebook.com/RyanYJL" />
+        <meta property="article:section" content="Article" />
+        <meta property="og:image" content="http://0.0.0.0:4000/assets/img/logo.png" />
+        <meta property="og:image:width" content="300" />
+        <meta property="og:image:height" content="300" />
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="@RyanYJL"/>
+        <meta name="twitter:domain" content="Ryan-YJL"/>
+        <meta name="twitter:creator" content="@RyanYJL"/>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/assets/webfonts/font.css">
+        <link rel="stylesheet" href="/assets/css/poole.css">
+        <link rel="stylesheet" href="/assets/css/syntax.css">
+        <link rel="stylesheet" href="/assets/css/hyde.css">
+        <link rel="stylesheet" href="/assets/css/font-awesome.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
+        <link rel="stylesheet" href="/assets/plugins/magnific-popup/magnific-popup.css"> 
+        <script src="/assets/plugins/magnific-popup/jquery.magnific-popup.js"></script> 
+
+        <!-- Icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/apple-touch-icon-144-precomposed.png">
+        <link rel="shortcut icon" href="/assets/favicon.ico">
+
+        <!-- RSS -->
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="http://0.0.0.0:4000/atom.xml" />
+        <script>
+            $(document).ready(function() {
+                $('.post img').each(function(i,e){
+                    var img = $(e);
+                    img.wrapAll('<a href="'+img.attr('src')+'" class="image-link"></a>');
+                });
+                $(document).find('.image-link').magnificPopup({type:'image'});
+            });
+        </script>
+
+    </head>
+
+
+  <body>
+
+    <div class="topbar">
+    <div class="container">
+        <div class="topbar-content">
+            <div class="brand">
+                <a href="/">
+                    <span>Ryan</span>YJL
+                </a>
+            </div>
+            <div class="menu-container">
+                <div class="menu clearfix">
+                    <div><a class="" href="http://0.0.0.0:4000/category/everything/">Everything</a></div>
+                    <div><a class="active" href="http://0.0.0.0:4000/category/web/">Web</a></div>
+                    <div><a class="" href="/tags/">Tags</a></div>
+                    <div><a class="" href="http://0.0.0.0:4000/about/">About</a></div>
+                    <div></div>
+                    <div class="social">
+<!--                        
+                        <a class="social-icon" href=""><span class="fa fa-tumblr"></span></a>
+                        -->
+                        
+                        <a class="social-icon" href="https://twitter.com/RyanYJL"><span class="fa fa-twitter"></span></a>
+                        
+                        
+                        <a class="social-icon" href="mailto:ryan.yjl@gmail.com"><span class="fa fa-envelope"></span></a>
+                        
+                        <a class="social-icon" href="http://0.0.0.0:4000/atom.xml"><span class="fa fa-rss"></span></a>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+    
+    
+      <div class="content container">
+    <div class="breadcrumbs">
+        <a href="http://0.0.0.0:4000">Home</a> &raquo; 
+        <a href="http://0.0.0.0:4000/category/web">Web</a> &raquo; 
+        <a href="/web/2014/01/01/optimizing-case-sensitive-unique-key-query-without-using-utf8_cs-collation.html">Optimizing Case sensitive unique key query without using utf8_bin-collation</a>
+    </div>
+<div class="post">
+  <h1 class="post-title">Optimizing Case sensitive unique key query without using utf8_bin-collation</h1>
+  <div class="post-date">January 1, 2014</div>
+  <!--<div class="post-date post-details">Published January 1, 2014 by <a href="http://0.0.0.0:4000/about/">Ryan Yang</a></div>-->
+  <p>Most users of mysql would likely to have the collation of their database set to <span class="impt">utf8_general_ci</span>.</p>
+
+<p>Say you have a need to have a table of items with &#39;name&#39; as a unique key and want a name like &quot;Guns N&#39; Roses&quot; to be different from &quot;Guns n&#39; Roses&quot;</p>
+
+<p>Right away you would do something like:</p>
+
+<div class="highlight"><pre><code class="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">bands</span> <span class="k">ALTER</span> <span class="k">COLUMN</span> <span class="n">name</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">COLLATE</span> <span class="n">utf8_bin</span>
+
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">bands</span> <span class="k">ADD</span> <span class="k">UNIQUE</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Alternatively, you can do a one way hash for &#39;name&#39; field with md5 and store it as &#39;name_hash&#39;.</p>
+
+<p><strong>**Note you still need to set it as a unique key but because md5 strings are all in 32 digit hexadecimal number, you don&#39;t have to collate your hash column differently from the rest of your table.</strong></p>
+
+<p>This is similar to how <span class="impt">utf8_bin compares characters in binary format</span>. This means that characters like &quot;å&quot; will not be treated like &quot;a&quot;.</p>
+
+<hr>
+
+<p>In doing so, you can simply do a search</p>
+
+<div class="highlight"><pre><code class="php"><span class="cp">&lt;?php</span>
+
+<span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;Romeo &amp; Juliet&#39;</span><span class="p">;</span>
+<span class="nv">$name_hash</span> <span class="o">=</span> <span class="nb">md5</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
+
+<span class="cp">?&gt;</span><span class="x"></span>
+</code></pre></div>
+
+<div class="highlight"><pre><code class="php"><span class="cp">&lt;?php</span>
+
+<span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM bands WHERE name_hash = &quot;</span><span class="o">.</span><span class="nb">md5</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
+
+<span class="cp">?&gt;</span><span class="x"></span>
+</code></pre></div>
+
+<p>Now, you may think, why use a hash when you can let mysql do all the heavy lifting? The benefit comes when there are times you have <strong>multiple unique keys</strong> and have no real use for the unique keys except to check if the row exist.</p>
+
+<p>You can combine all the unique fields into one <span class="impt">single hash column</span> where you can query like so.</p>
+
+<div class="highlight"><pre><code class="php"><span class="cp">&lt;?php</span>
+
+<span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT id FROM bands WHERE hash = &quot;</span><span class="o">.</span><span class="nb">md5</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">$field_1</span><span class="s2"> , </span><span class="si">$field_2</span><span class="s2"> , </span><span class="si">$field_3</span><span class="s2"> , </span><span class="si">$field_4</span><span class="s2">&quot;</span><span class="p">);</span>
+
+
+<span class="cp">?&gt;</span><span class="x"></span>
+</code></pre></div>
+
+<p>This saves mysql from checking multiple columns for matches simply to fulfill a check exist query.</p>
+
+  
+  <div class="post-date">( Last modified 26 July 2014, 4:28 PM )</div>
+</div>
+
+<ul class="tags clearfix">
+  
+    <li><a href="http://0.0.0.0:4000/tag/mysql">mysql</a> </li>
+  
+</ul>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+          <div class="archive-item">
+            <span class="post-date archive-date">April 3, 2014</span>
+            <a href="/web/2014/04/03/using-subversion-gui-synx-to-publish-your-wordpress-plugin.html" class="archive-title">
+              Using subversion (GUI) SVNx to publish your WordPress plugin
+            </a>
+        </div>
+        
+      </li>
+    
+      <li>
+          <div class="archive-item">
+            <span class="post-date archive-date">April 3, 2014</span>
+            <a href="/web/2014/04/03/using-subversion-ci-to-publish-your-wordpress-plugin.html" class="archive-title">
+              Using subversion (Command Line) to publish your WordPress plugin
+            </a>
+        </div>
+        
+      </li>
+    
+      <li>
+          <div class="archive-item">
+            <span class="post-date archive-date">February 27, 2014</span>
+            <a href="/web/2014/02/27/using-eval-with-redis-cli-and-lua.html" class="archive-title">
+              Using eval with redis-cli and lua
+            </a>
+        </div>
+        
+      </li>
+    
+  </ul>
+</div>
+</div>
+      
+    
+    <div class="footer">
+    <div class="container">
+        <p class="copyright">&copy; 2014. Ryan-YJL. Powered by <a href="http://jekyllrb.com/">Jekyll</a>. Hosted by <a href="https://github.com">GitHub</a>.
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." style="float: right;"><img alt="Creative Commons License" style="margin-top: 1px; border-width: 0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a> 
+    </div>
+</div>
+	<script>
+		
+	</script>
+  </body>
+</html>

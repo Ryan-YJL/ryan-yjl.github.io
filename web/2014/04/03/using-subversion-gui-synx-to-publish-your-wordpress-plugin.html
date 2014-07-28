@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+      <head>
+        <link href="http://gmpg.org/xfn/11" rel="profile">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        <!-- Enable responsiveness on mobile devices-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+        <title>
+            
+            Using subversion (GUI) SVNx to publish your WordPress plugin &middot; Ryan Yang
+            
+        </title>
+
+        <!-- SEO -->
+        <meta property="og:title" content="Using subversion (GUI) SVNx to publish your WordPress plugin" />
+        <meta name="description" content=""/>
+        <meta property="og:description" content="" />
+
+        
+        <meta name="author" content="Ryan Yang" />
+        <link rel="canonical" href="/web/2014/04/03/using-subversion-gui-synx-to-publish-your-wordpress-plugin.html" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="/web/2014/04/03/using-subversion-gui-synx-to-publish-your-wordpress-plugin.html" />
+        <meta property="og:site_name" content="Ryan Yang" />
+        <meta property="article:publisher" content="https://www.facebook.com/RyanYJL" />
+        <meta property="article:section" content="Article" />
+        <meta property="og:image" content="http://0.0.0.0:4000/assets/img/logo.png" />
+        <meta property="og:image:width" content="300" />
+        <meta property="og:image:height" content="300" />
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="@RyanYJL"/>
+        <meta name="twitter:domain" content="Ryan-YJL"/>
+        <meta name="twitter:creator" content="@RyanYJL"/>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/assets/webfonts/font.css">
+        <link rel="stylesheet" href="/assets/css/poole.css">
+        <link rel="stylesheet" href="/assets/css/syntax.css">
+        <link rel="stylesheet" href="/assets/css/hyde.css">
+        <link rel="stylesheet" href="/assets/css/font-awesome.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
+        <link rel="stylesheet" href="/assets/plugins/magnific-popup/magnific-popup.css"> 
+        <script src="/assets/plugins/magnific-popup/jquery.magnific-popup.js"></script> 
+
+        <!-- Icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/apple-touch-icon-144-precomposed.png">
+        <link rel="shortcut icon" href="/assets/favicon.ico">
+
+        <!-- RSS -->
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="http://0.0.0.0:4000/atom.xml" />
+        <script>
+            $(document).ready(function() {
+                $('.post img').each(function(i,e){
+                    var img = $(e);
+                    img.wrapAll('<a href="'+img.attr('src')+'" class="image-link"></a>');
+                });
+                $(document).find('.image-link').magnificPopup({type:'image'});
+            });
+        </script>
+
+    </head>
+
+
+  <body>
+
+    <div class="topbar">
+    <div class="container">
+        <div class="topbar-content">
+            <div class="brand">
+                <a href="/">
+                    <span>Ryan</span>YJL
+                </a>
+            </div>
+            <div class="menu-container">
+                <div class="menu clearfix">
+                    <div><a class="" href="http://0.0.0.0:4000/category/everything/">Everything</a></div>
+                    <div><a class="active" href="http://0.0.0.0:4000/category/web/">Web</a></div>
+                    <div><a class="" href="/tags/">Tags</a></div>
+                    <div><a class="" href="http://0.0.0.0:4000/about/">About</a></div>
+                    <div></div>
+                    <div class="social">
+<!--                        
+                        <a class="social-icon" href=""><span class="fa fa-tumblr"></span></a>
+                        -->
+                        
+                        <a class="social-icon" href="https://twitter.com/RyanYJL"><span class="fa fa-twitter"></span></a>
+                        
+                        
+                        <a class="social-icon" href="mailto:ryan.yjl@gmail.com"><span class="fa fa-envelope"></span></a>
+                        
+                        <a class="social-icon" href="http://0.0.0.0:4000/atom.xml"><span class="fa fa-rss"></span></a>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+    
+    
+      <div class="content container">
+    <div class="breadcrumbs">
+        <a href="http://0.0.0.0:4000">Home</a> &raquo; 
+        <a href="http://0.0.0.0:4000/category/web">Web</a> &raquo; 
+        <a href="/web/2014/04/03/using-subversion-gui-synx-to-publish-your-wordpress-plugin.html">Using subversion (GUI) SVNx to publish your WordPress plugin</a>
+    </div>
+<div class="post">
+  <h1 class="post-title">Using subversion (GUI) SVNx to publish your WordPress plugin</h1>
+  <div class="post-date">April 3, 2014</div>
+  <!--<div class="post-date post-details">Published April 3, 2014 by <a href="http://0.0.0.0:4000/about/">Ryan Yang</a></div>-->
+  <p>You have just got approved by WordPress and handed your official WordPress repository and want to get up and running with publishing your WordPress plugin at the plugin directory.</p>
+
+<p>But you have been using git have no time to learn all the nooks and crannies of SVN, what should you do?</p>
+
+<p>If you are using a mac, I would recommend you to use SVNx. It is free and easy to use and you can download it <a href="https://code.google.com/p/svnx/">here</a>.</p>
+
+<p>Once you downloaded, simply open up the app and go to the top menu bar and right under &#39;Window&#39;, you will see &#39;<strong>Repositories</strong>&#39; and &#39;<strong>Working Copies</strong>&#39;.</p>
+
+<p><img src="http://0.0.0.0:4000/assets/img/uploads/svnx-screenshot-1.jpg"></p>
+
+<p>Basically, &#39;<strong>Repositories</strong>&#39; is the one where you specify your WordPress plugin repository.</p>
+
+<p>So you can go ahead and hit the &quot;+&quot; sign to create a respository.</p>
+
+<ul>
+<li>Enter a <strong>Name</strong> for your repository (can be anything)</li>
+<li><strong>Path</strong> which will be something like http://plugins.svn.wordpress.org/your-plugin-name/</li>
+<li><strong>User</strong> and <strong>Pass</strong> which will be your wordpress.org credentials</li>
+</ul>
+
+<p><img src="http://0.0.0.0:4000/assets/img/uploads/svnx-screenshot-2.jpg"></p>
+
+<p>If your svn plugin url and credentials are right, at the GUI you will see that under &#39;root&#39;, there are 4 folders.</p>
+
+<ul>
+<li>assets</li>
+<li>branches</li>
+<li>tags</li>
+<li>trunk</li>
+</ul>
+
+<p>Go ahead and svn checkout the files to a local directory.</p>
+
+<p><img src="http://0.0.0.0:4000/assets/img/uploads/svnx-screenshot-3.jpg"></p>
+
+<p>Next go to Window -&gt; Working Copies and hit the &quot;+&quot; sign to create a &quot;Working Copy&quot;.</p>
+
+<p><img src="http://0.0.0.0:4000/assets/img/uploads/svnx-screenshot-4.jpg"></p>
+
+<ul>
+<li>Enter a <strong>Name</strong> for your working copy. (can be anything)</li>
+<li><strong>Path</strong> which will be the location where you checked out your respository in the previous step.</li>
+<li><strong>User</strong> and <strong>Pass</strong> which will be your wordpress.org credentials.</li>
+</ul>
+
+<p>2) Copy all your plugin files to the trunk folder. ( This is where your development files should be. )</p>
+
+<p>Now when you double click on your <strong>Working Copy</strong>, you will see the files that have been added to your directory. If a new file is added, you will see an &#39;A&#39; in front of the file path. If file has been changed, you will see an &#39;M&#39; instead.</p>
+
+<p>To upload your files to your repository is simple. Just select all the files you want and click &#39;Add&#39; or &#39;Update&#39; and then &#39;Commit&#39; to commit your changes to the wordpress repository.</p>
+
+<p><img src="http://0.0.0.0:4000/assets/img/uploads/svnx-screenshot-5.jpg"></p>
+
+<p>Once you have committed the changes, you will see a Rev # and date/time along with your commit message over at the Respositories window.</p>
+
+<p><img src="http://0.0.0.0:4000/assets/img/uploads/svnx-screenshot-6.jpg"></p>
+
+<p>Now to tag your release, all you need to do is to svn copy the newly updated &#39;trunk&#39; folder to the &#39;tags&#39; folder and indicate a &#39;version&#39;. Make sure that this version corresponds to the version info specified in your plugin main php file.</p>
+
+<p><img src="http://0.0.0.0:4000/assets/img/uploads/svnx-screenshot-7.jpg"></p>
+
+<p>Here is a simplified workflow of a WordPress plugin update using SVNx</p>
+
+<ol>
+<li>Do all your changes in the &#39;trunk&#39; folder </li>
+<li>Update the &#39;Stable tag&#39; in the readme file.</li>
+<li>Update the &#39;Version&#39; in your plugin’s main PHP file.</li>
+<li>Commit the additions/updates in the &#39;trunk&#39; folder at &#39;Working Copies&#39; window</li>
+<li>Go over to &#39;Repositories&#39; window</li>
+<li>Tag the new version by copying the &#39;trunk&#39; folder to a new tag under the &#39;tags&#39; folder.</li>
+</ol>
+
+<h3>Things to note</h3>
+
+<ul>
+<li>Make sure you are selecting the trunk folder before you click on &#39;svn copy&#39; and that you have selected the &#39;tags&#39; folder for the target.</li>
+<li>Always remember to update your &#39;Stable tag&#39; in the readme.txt file</li>
+<li>You need to include &#39;Version&#39; info the plugin main php, your plugin page will not show the correct download version.</li>
+</ul>
+
+  
+  <div class="post-date">( Last modified 26 July 2014, 1:29 PM )</div>
+</div>
+
+<ul class="tags clearfix">
+  
+    <li><a href="http://0.0.0.0:4000/tag/wordpress">wordpress</a> </li>
+  
+</ul>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+          <div class="archive-item">
+            <span class="post-date archive-date">April 3, 2014</span>
+            <a href="/web/2014/04/03/using-subversion-ci-to-publish-your-wordpress-plugin.html" class="archive-title">
+              Using subversion (Command Line) to publish your WordPress plugin
+            </a>
+        </div>
+        
+      </li>
+    
+      <li>
+          <div class="archive-item">
+            <span class="post-date archive-date">February 27, 2014</span>
+            <a href="/web/2014/02/27/using-eval-with-redis-cli-and-lua.html" class="archive-title">
+              Using eval with redis-cli and lua
+            </a>
+        </div>
+        
+      </li>
+    
+      <li>
+          <div class="archive-item">
+            <span class="post-date archive-date">January 1, 2014</span>
+            <a href="/web/2014/01/01/optimizing-case-sensitive-unique-key-query-without-using-utf8_cs-collation.html" class="archive-title">
+              Optimizing Case sensitive unique key query without using utf8_bin-collation
+            </a>
+        </div>
+        
+      </li>
+    
+  </ul>
+</div>
+</div>
+      
+    
+    <div class="footer">
+    <div class="container">
+        <p class="copyright">&copy; 2014. Ryan-YJL. Powered by <a href="http://jekyllrb.com/">Jekyll</a>. Hosted by <a href="https://github.com">GitHub</a>.
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." style="float: right;"><img alt="Creative Commons License" style="margin-top: 1px; border-width: 0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a> 
+    </div>
+</div>
+	<script>
+		
+	</script>
+  </body>
+</html>
