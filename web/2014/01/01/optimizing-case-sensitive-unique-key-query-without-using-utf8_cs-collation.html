@@ -28,7 +28,7 @@
         <meta property="og:site_name" content="Ryan Yang" />
         <meta property="article:publisher" content="https://www.facebook.com/RyanYJL" />
         <meta property="article:section" content="Article" />
-        <meta property="og:image" content="http://0.0.0.0:4000/assets/img/logo.png" />
+        <meta property="og:image" content="/assets/img/logo.png" />
         <meta property="og:image:width" content="300" />
         <meta property="og:image:height" content="300" />
         <meta name="twitter:card" content="summary"/>
@@ -51,7 +51,7 @@
         <link rel="shortcut icon" href="/assets/favicon.ico">
 
         <!-- RSS -->
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="http://0.0.0.0:4000/atom.xml" />
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml" />
         <script>
             $(document).ready(function() {
                 $('.post img').each(function(i,e){
@@ -77,10 +77,10 @@
             </div>
             <div class="menu-container">
                 <div class="menu clearfix">
-                    <div><a class="" href="http://0.0.0.0:4000/category/everything/">Everything</a></div>
-                    <div><a class="active" href="http://0.0.0.0:4000/category/web/">Web</a></div>
+                    <div><a class="" href="/category/everything/">Everything</a></div>
+                    <div><a class="active" href="/category/web/">Web</a></div>
                     <div><a class="" href="/tags/">Tags</a></div>
-                    <div><a class="" href="http://0.0.0.0:4000/about/">About</a></div>
+                    <div><a class="" href="/about/">About</a></div>
                     <div></div>
                     <div class="social">
 <!--                        
@@ -92,7 +92,7 @@
                         
                         <a class="social-icon" href="mailto:ryan.yjl@gmail.com"><span class="fa fa-envelope"></span></a>
                         
-                        <a class="social-icon" href="http://0.0.0.0:4000/atom.xml"><span class="fa fa-rss"></span></a>
+                        <a class="social-icon" href="/atom.xml"><span class="fa fa-rss"></span></a>
                     </div>
                 </div>
             </div>  
@@ -104,13 +104,13 @@
       <div class="content container">
     <div class="breadcrumbs">
         <a href="/">Home</a> &raquo; 
-        <a href="http://0.0.0.0:4000/category/web">Web</a> &raquo; 
+        <a href="/category/web">Web</a> &raquo; 
         <a href="/web/2014/01/01/optimizing-case-sensitive-unique-key-query-without-using-utf8_cs-collation.html">Optimizing Case sensitive unique key query without using utf8_bin-collation</a>
     </div>
 <div class="post">
   <h1 class="post-title">Optimizing Case sensitive unique key query without using utf8_bin-collation</h1>
   <div class="post-date">January 1, 2014</div>
-  <!--<div class="post-date post-details">Published January 1, 2014 by <a href="http://0.0.0.0:4000/about/">Ryan Yang</a></div>-->
+  <!--<div class="post-date post-details">Published January 1, 2014 by <a href="/about/">Ryan Yang</a></div>-->
   <p>Most users of mysql would likely to have the collation of their database set to <span class="impt">utf8_general_ci</span>.</p>
 
 <p>Say you have a need to have a table of items with &#39;name&#39; as a unique key and want a name like &quot;Guns N&#39; Roses&quot; to be different from &quot;Guns n&#39; Roses&quot;</p>
@@ -167,7 +167,7 @@
 
 <ul class="tags clearfix">
   
-    <li><a href="http://0.0.0.0:4000/tag/mysql">mysql</a> </li>
+    <li><a href="/tag/mysql">mysql</a> </li>
   
 </ul>
 

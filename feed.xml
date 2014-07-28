@@ -3,8 +3,8 @@
 <channel>
 <title>Ryan Yang</title>
 <description>Everything about Ryan Yang J.L.</description>	
-<link>http://0.0.0.0:4000</link>
-<atom:link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/rss+xml" />
+<link></link>
+<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
 
 <item>
 <title>Using subversion (GUI) SVNx to publish your WordPress plugin</title>
@@ -16,7 +16,7 @@
 
 &lt;p&gt;Once you downloaded, simply open up the app and go to the top menu bar and right under &amp;#39;Window&amp;#39;, you will see &amp;#39;&lt;strong&gt;Repositories&lt;/strong&gt;&amp;#39; and &amp;#39;&lt;strong&gt;Working Copies&lt;/strong&gt;&amp;#39;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://0.0.0.0:4000/assets/img/uploads/svnx-screenshot-1.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/uploads/svnx-screenshot-1.jpg&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;Basically, &amp;#39;&lt;strong&gt;Repositories&lt;/strong&gt;&amp;#39; is the one where you specify your WordPress plugin repository.&lt;/p&gt;
 
@@ -28,7 +28,7 @@
 &lt;li&gt;&lt;strong&gt;User&lt;/strong&gt; and &lt;strong&gt;Pass&lt;/strong&gt; which will be your wordpress.org credentials&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://0.0.0.0:4000/assets/img/uploads/svnx-screenshot-2.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/uploads/svnx-screenshot-2.jpg&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;If your svn plugin url and credentials are right, at the GUI you will see that under &amp;#39;root&amp;#39;, there are 4 folders.&lt;/p&gt;
 
@@ -41,11 +41,11 @@
 
 &lt;p&gt;Go ahead and svn checkout the files to a local directory.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://0.0.0.0:4000/assets/img/uploads/svnx-screenshot-3.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/uploads/svnx-screenshot-3.jpg&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;Next go to Window -&amp;gt; Working Copies and hit the &amp;quot;+&amp;quot; sign to create a &amp;quot;Working Copy&amp;quot;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://0.0.0.0:4000/assets/img/uploads/svnx-screenshot-4.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/uploads/svnx-screenshot-4.jpg&quot;&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Enter a &lt;strong&gt;Name&lt;/strong&gt; for your working copy. (can be anything)&lt;/li&gt;
@@ -59,15 +59,15 @@
 
 &lt;p&gt;To upload your files to your repository is simple. Just select all the files you want and click &amp;#39;Add&amp;#39; or &amp;#39;Update&amp;#39; and then &amp;#39;Commit&amp;#39; to commit your changes to the wordpress repository.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://0.0.0.0:4000/assets/img/uploads/svnx-screenshot-5.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/uploads/svnx-screenshot-5.jpg&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;Once you have committed the changes, you will see a Rev # and date/time along with your commit message over at the Respositories window.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://0.0.0.0:4000/assets/img/uploads/svnx-screenshot-6.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/uploads/svnx-screenshot-6.jpg&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;Now to tag your release, all you need to do is to svn copy the newly updated &amp;#39;trunk&amp;#39; folder to the &amp;#39;tags&amp;#39; folder and indicate a &amp;#39;version&amp;#39;. Make sure that this version corresponds to the version info specified in your plugin main php file.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://0.0.0.0:4000/assets/img/uploads/svnx-screenshot-7.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/uploads/svnx-screenshot-7.jpg&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;Here is a simplified workflow of a WordPress plugin update using SVNx&lt;/p&gt;
 
@@ -89,8 +89,8 @@
 &lt;/ul&gt;
 </description>
 <pubDate>Thu, 03 Apr 2014 00:00:00 +0800</pubDate>
-<link>http://0.0.0.0:4000/web/2014/04/03/using-subversion-gui-synx-to-publish-your-wordpress-plugin.html</link>
-<guid isPermaLink="true">http://0.0.0.0:4000/web/2014/04/03/using-subversion-gui-synx-to-publish-your-wordpress-plugin.html</guid>
+<link>/web/2014/04/03/using-subversion-gui-synx-to-publish-your-wordpress-plugin.html</link>
+<guid isPermaLink="true">/web/2014/04/03/using-subversion-gui-synx-to-publish-your-wordpress-plugin.html</guid>
 </item>
 
 <item>
@@ -173,8 +173,8 @@
 &lt;/ul&gt;
 </description>
 <pubDate>Thu, 03 Apr 2014 00:00:00 +0800</pubDate>
-<link>http://0.0.0.0:4000/web/2014/04/03/using-subversion-ci-to-publish-your-wordpress-plugin.html</link>
-<guid isPermaLink="true">http://0.0.0.0:4000/web/2014/04/03/using-subversion-ci-to-publish-your-wordpress-plugin.html</guid>
+<link>/web/2014/04/03/using-subversion-ci-to-publish-your-wordpress-plugin.html</link>
+<guid isPermaLink="true">/web/2014/04/03/using-subversion-ci-to-publish-your-wordpress-plugin.html</guid>
 </item>
 
 <item>
@@ -215,8 +215,8 @@
 &lt;p&gt;With a simple lua script, you can avoid using an additional layer of abstraction to interact with redis - a fast key value storage system.&lt;/p&gt;
 </description>
 <pubDate>Thu, 27 Feb 2014 00:00:00 +0800</pubDate>
-<link>http://0.0.0.0:4000/web/2014/02/27/using-eval-with-redis-cli-and-lua.html</link>
-<guid isPermaLink="true">http://0.0.0.0:4000/web/2014/02/27/using-eval-with-redis-cli-and-lua.html</guid>
+<link>/web/2014/02/27/using-eval-with-redis-cli-and-lua.html</link>
+<guid isPermaLink="true">/web/2014/02/27/using-eval-with-redis-cli-and-lua.html</guid>
 </item>
 
 <item>
@@ -272,8 +272,8 @@
 &lt;p&gt;This saves mysql from checking multiple columns for matches simply to fulfill a check exist query.&lt;/p&gt;
 </description>
 <pubDate>Wed, 01 Jan 2014 00:00:00 +0800</pubDate>
-<link>http://0.0.0.0:4000/web/2014/01/01/optimizing-case-sensitive-unique-key-query-without-using-utf8_cs-collation.html</link>
-<guid isPermaLink="true">http://0.0.0.0:4000/web/2014/01/01/optimizing-case-sensitive-unique-key-query-without-using-utf8_cs-collation.html</guid>
+<link>/web/2014/01/01/optimizing-case-sensitive-unique-key-query-without-using-utf8_cs-collation.html</link>
+<guid isPermaLink="true">/web/2014/01/01/optimizing-case-sensitive-unique-key-query-without-using-utf8_cs-collation.html</guid>
 </item>
 
 <item>
@@ -306,8 +306,8 @@ sudo make install
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
 <pubDate>Thu, 28 Nov 2013 00:00:00 +0800</pubDate>
-<link>http://0.0.0.0:4000/web/2013/11/28/how-to-install-luarocks-on-ubuntu.html</link>
-<guid isPermaLink="true">http://0.0.0.0:4000/web/2013/11/28/how-to-install-luarocks-on-ubuntu.html</guid>
+<link>/web/2013/11/28/how-to-install-luarocks-on-ubuntu.html</link>
+<guid isPermaLink="true">/web/2013/11/28/how-to-install-luarocks-on-ubuntu.html</guid>
 </item>
 
 <item>
@@ -391,8 +391,8 @@ tomcat7-user
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
 <pubDate>Wed, 20 Nov 2013 00:00:00 +0800</pubDate>
-<link>http://0.0.0.0:4000/web/2013/11/20/package-management-command-cheat-sheet-for-redhat-linux.html</link>
-<guid isPermaLink="true">http://0.0.0.0:4000/web/2013/11/20/package-management-command-cheat-sheet-for-redhat-linux.html</guid>
+<link>/web/2013/11/20/package-management-command-cheat-sheet-for-redhat-linux.html</link>
+<guid isPermaLink="true">/web/2013/11/20/package-management-command-cheat-sheet-for-redhat-linux.html</guid>
 </item>
 
 <item>
@@ -479,8 +479,8 @@ tomcat7-user
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
 <pubDate>Wed, 20 Nov 2013 00:00:00 +0800</pubDate>
-<link>http://0.0.0.0:4000/web/2013/11/20/package-management-command-cheat-sheet-for-debian-linux.html</link>
-<guid isPermaLink="true">http://0.0.0.0:4000/web/2013/11/20/package-management-command-cheat-sheet-for-debian-linux.html</guid>
+<link>/web/2013/11/20/package-management-command-cheat-sheet-for-debian-linux.html</link>
+<guid isPermaLink="true">/web/2013/11/20/package-management-command-cheat-sheet-for-debian-linux.html</guid>
 </item>
 
 <item>
@@ -533,8 +533,8 @@ Usage: redis-cli &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;OPTIONS&lt;span c
 &lt;p&gt;Personally, I find that more use for the redis-cli --eval because I use to pipe variables from other input to redis-cli.&lt;/p&gt;
 </description>
 <pubDate>Thu, 14 Nov 2013 00:00:00 +0800</pubDate>
-<link>http://0.0.0.0:4000/web/2013/11/14/difference-between-redis-eval-command-and-redis-cli-eval.html</link>
-<guid isPermaLink="true">http://0.0.0.0:4000/web/2013/11/14/difference-between-redis-eval-command-and-redis-cli-eval.html</guid>
+<link>/web/2013/11/14/difference-between-redis-eval-command-and-redis-cli-eval.html</link>
+<guid isPermaLink="true">/web/2013/11/14/difference-between-redis-eval-command-and-redis-cli-eval.html</guid>
 </item>
 
 <item>
@@ -546,8 +546,8 @@ Usage: redis-cli &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;OPTIONS&lt;span c
 &lt;p&gt;Stackoverflow also primary uses redis for &lt;a href=&quot;http://meta.stackexchange.com/questions/69164/does-stack-overflow-use-caching-and-if-so-how/69172#69172&quot;&gt;caching&lt;/a&gt;.&lt;/p&gt;
 </description>
 <pubDate>Thu, 23 May 2013 00:00:00 +0800</pubDate>
-<link>http://0.0.0.0:4000/web/2013/05/23/what-is-your-use-for-redis.html</link>
-<guid isPermaLink="true">http://0.0.0.0:4000/web/2013/05/23/what-is-your-use-for-redis.html</guid>
+<link>/web/2013/05/23/what-is-your-use-for-redis.html</link>
+<guid isPermaLink="true">/web/2013/05/23/what-is-your-use-for-redis.html</guid>
 </item>
 
 <item>
@@ -578,8 +578,8 @@ Usage: redis-cli &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;OPTIONS&lt;span c
 &lt;p&gt;Most of the time, you only need to care about &lt;strong&gt;USER&lt;/strong&gt;, &lt;strong&gt;PID&lt;/strong&gt; and &lt;strong&gt;COMMAND&lt;/strong&gt;. If you have &lt;/p&gt;
 </description>
 <pubDate>Mon, 17 Dec 2012 00:00:00 +0800</pubDate>
-<link>http://0.0.0.0:4000/web/2012/12/17/kill-process-master.html</link>
-<guid isPermaLink="true">http://0.0.0.0:4000/web/2012/12/17/kill-process-master.html</guid>
+<link>/web/2012/12/17/kill-process-master.html</link>
+<guid isPermaLink="true">/web/2012/12/17/kill-process-master.html</guid>
 </item>
 
 </channel>
