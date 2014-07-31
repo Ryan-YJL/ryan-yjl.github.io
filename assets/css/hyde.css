@@ -237,7 +237,35 @@ and "footer" content. Starts
   background-color: #213a72;
   text-decoration: none;
 }
-
+.post .tags {
+    margin: 1rem 0;
+}
+ul.tags-normal {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 0 -1rem;
+}
+.tags-normal li {
+    list-style: none;
+    display: inline-block;
+    float: left;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding-left: 1rem;
+    margin-bottom: 0.5rem;
+    width: 25%;
+}
+.tags-normal li a {
+    display: block;
+}
+.btn-view {
+    background-color: #274486;
+    color: #fff;
+    padding: 0.5rem 2rem;
+    margin: 1rem 0;
+}
 /* Sticky topbar
 *
 * Add the `topbar-sticky` class to the topbar's container to affix it the
