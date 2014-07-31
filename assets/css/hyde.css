@@ -136,11 +136,35 @@ h1.brand {
 .portfolio {
     margin: 0 -0.5rem;
 }
-img.portfolio-logo {
-    display: inline;
+.portfolio-logo {
+    display: inline-block;
     border: 1px solid #ccc;
     margin: 0 0.5rem 1rem 0.5rem;
-    
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 135px;
+    height: 135px;
+}
+.portfolio-logo:hover {
+    background-position: 0 -135px;
+}
+.logo_ticketdrive {
+    background-image: url('http://static-fc3v5i52q0hd93op6.s3-website-ap-southeast-1.amazonaws.com/img/logo/logo_ticketdrive.png');
+}
+.logo_openauc {
+    background-image: url('http://static-fc3v5i52q0hd93op6.s3-website-ap-southeast-1.amazonaws.com/img/logo/logo_openauc.png');
+}
+.logo_chutto {
+    background-image: url('http://static-fc3v5i52q0hd93op6.s3-website-ap-southeast-1.amazonaws.com/img/logo/logo_chutto.png');
+}
+.logo_writeville {
+    background-image: url('http://static-fc3v5i52q0hd93op6.s3-website-ap-southeast-1.amazonaws.com/img/logo/logo_writeville.png');
+}
+.logo_sharealink{
+    background-image: url('http://static-fc3v5i52q0hd93op6.s3-website-ap-southeast-1.amazonaws.com/img/logo/logo_sharealink.png');
+}
+.logo_setcron {
+    background-image: url('http://static-fc3v5i52q0hd93op6.s3-website-ap-southeast-1.amazonaws.com/img/logo/logo_setcron.png');
 }
 .tag-archive {
     margin: 0 -1rem;
