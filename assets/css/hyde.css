@@ -143,11 +143,16 @@ h1.brand {
 .portfolio {
     margin: 0 -0.5rem;
 }
+.portfolio div {
+    border: 1px solid #ccc;
+    width: 135px;
+    height: 135px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
 .portfolio-logo {
     display: block;
-    border: 1px solid #ccc;
     margin: 0 0.5rem 1rem 0.5rem;
-    background-position: 0 0;
     background-repeat: no-repeat;
     background-position: 0 -135px;
     width: 135px;
