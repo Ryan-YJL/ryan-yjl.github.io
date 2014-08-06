@@ -44,6 +44,11 @@ html {
 body {
     min-width: 34rem;
 }
+.notification {
+    font-size: 14px;
+    background-color: #FFF787;
+    padding: 1rem;
+}
 .animate {
     -webkit-transition: background-image 0.2s ease-in-out;
     -moz-transition: background-image 0.2s ease-in-out;
