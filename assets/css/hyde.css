@@ -144,33 +144,51 @@ h1.brand {
     margin: 0 -0.5rem;
 }
 .portfolio-logo {
-    display: inline-block;
+    display: block;
     border: 1px solid #ccc;
     margin: 0 0.5rem 1rem 0.5rem;
     background-position: 0 0;
     background-repeat: no-repeat;
+    background-position: 0 -135px;
     width: 135px;
     height: 135px;
+    opacity:0;
+    -webkit-transition: opacity 200ms linear;
+    -moz-transition: opacity 200ms linear;
+    -o-transition: opacity 200ms linear;
+    -ms-transition: opacity 200ms linear;
+    transition: opacity 200ms linear;
 }
 .portfolio-logo:hover {
-    background-position: 0 -135px;
+    opacity:1;
+    -webkit-transition: opacity 200ms linear;
+    -moz-transition: opacity 200ms linear;
+    -o-transition: opacity 200ms linear;
+    -ms-transition: opacity 200ms linear;
+    transition: opacity 200ms linear;
 }
-.logo_ticketdrive {
+.logo_ticketdrive,
+.logo_ticketdrive .portfolio-logo {
     background-image: url('http://static-fc3v5i52q0hd93op6.s3-website-ap-southeast-1.amazonaws.com/img/logo/logo_ticketdrive.png');
 }
-.logo_openauc {
+.logo_openauc,
+.logo_openauc .portfolio-logo {
     background-image: url('http://static-fc3v5i52q0hd93op6.s3-website-ap-southeast-1.amazonaws.com/img/logo/logo_openauc.png');
 }
-.logo_chutto {
+.logo_chutto,
+.logo_chutto .portfolio-logo {
     background-image: url('http://static-fc3v5i52q0hd93op6.s3-website-ap-southeast-1.amazonaws.com/img/logo/logo_chutto.png');
 }
-.logo_writeville {
+.logo_writeville,
+.logo_writeville .portfolio-logo {
     background-image: url('http://static-fc3v5i52q0hd93op6.s3-website-ap-southeast-1.amazonaws.com/img/logo/logo_writeville.png');
 }
-.logo_sharealink{
+.logo_sharealink,
+.logo_sharealink .portfolio-logo {
     background-image: url('http://static-fc3v5i52q0hd93op6.s3-website-ap-southeast-1.amazonaws.com/img/logo/logo_sharealink.png');
 }
-.logo_setcron {
+.logo_setcron,
+.logo_setcron .portfolio-logo {
     background-image: url('http://static-fc3v5i52q0hd93op6.s3-website-ap-southeast-1.amazonaws.com/img/logo/logo_setcron.png');
 }
 .tag-archive {
