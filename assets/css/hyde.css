@@ -144,6 +144,8 @@ h1.brand {
     margin: 0 -0.5rem;
 }
 .portfolio div {
+    display: inline-block;
+    margin: 0 0.5rem 1rem 0.5rem;
     border: 1px solid #ccc;
     width: 135px;
     height: 135px;
@@ -152,7 +154,6 @@ h1.brand {
 }
 .portfolio-logo {
     display: block;
-    margin: 0 0.5rem 1rem 0.5rem;
     background-repeat: no-repeat;
     background-position: 0 -135px;
     width: 135px;
