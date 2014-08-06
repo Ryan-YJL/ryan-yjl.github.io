@@ -52,8 +52,16 @@ body {
 .twitter-feed {
     margin:0 -0.5rem 2rem -0.5rem;
 }
+.animate {
+    -webkit-transition: background-image 0.2s ease-in-out;
+    -moz-transition: background-image 0.2s ease-in-out;
+    -ms-transition: background-image 0.2s ease-in-out;
+    -o-transition: background-image 0.2s ease-in-out;
+    transition: background-image 0.2s ease-in-out;
+}
 h1.brand {
   margin-top: 0;
+
 }
 .impt {
   background-color: #fffd53;
@@ -143,6 +151,9 @@ h1.brand {
 .breadcrumbs,
 .breadcrumbs a {
     color: #969696;
+}
+.portfolio {
+    margin: 0 -0.5rem;
 }
 .portfolio div {
     display: inline-block;
@@ -342,17 +353,16 @@ ul.tags-normal {
 
 .sidebar {
     width: 11rem;
-    padding: 4rem 1rem 0 0;
-    position: absolute;
-    top: 0;
-    left: 1rem;
+    padding: 4rem 2rem 0 0;
+    float: left;
 }
 .container.with-sidebar {
     position: relative;
+    clear: both;
 }
 .container.with-sidebar .content {
-    margin-left: 12rem;
-    min-height: 40rem;
+    float: left;
+    width: 25rem;
 }
 /* Container
 *
