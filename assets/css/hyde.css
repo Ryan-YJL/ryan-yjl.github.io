@@ -292,11 +292,13 @@ ul.tags-normal {
 .tags-normal li a {
     display: block;
 }
+.btn-view-container {
+    margin-top: 2rem;
+}
 .btn-view {
     background-color: #274486;
     color: #fff;
     padding: 0.5rem 2rem;
-    margin: 1rem 0;
 }
 /* Sticky topbar
 *
