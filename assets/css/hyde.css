@@ -110,6 +110,10 @@ h1.brand {
 .menu div a {
     display: block;
     padding: 0 0.5rem;
+    -webkit-transition: all 0.4s ease-out;
+    -moz-transition: all 0.4s ease-out;
+    -o-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out;
 }
 .menu div a:hover,.menu div a:focus, .menu div a.active {
     background-color: #213a72;
