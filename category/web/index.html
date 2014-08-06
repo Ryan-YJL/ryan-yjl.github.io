@@ -61,13 +61,16 @@
         <!-- RSS -->
         <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
         <script>
-        $(document).ready(function() {
-            $('.post img').each(function(i,e){
-                var img = $(e);
-                img.wrapAll('<a href="'+img.attr('src')+'" class="image-link"></a>');
+            if (navigator.userAgent.indexOf('Mac OS X') == -1) {
+                $('head').append('<link rel="stylesheet" href="/assets/css/non-mac.css" type="text/css" />');
+            }
+            $(document).ready(function() {
+                $('.post img').each(function(i,e){
+                    var img = $(e);
+                    img.wrapAll('<a href="'+img.attr('src')+'" class="image-link"></a>');
+                });
+                $(document).find('.image-link').magnificPopup({type:'image'});
             });
-            $(document).find('.image-link').magnificPopup({type:'image'});
-        });
         </script>
 
     </head>
