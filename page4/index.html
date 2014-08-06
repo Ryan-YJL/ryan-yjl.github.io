@@ -83,12 +83,11 @@
                 <div class="menu clearfix">
                     
                     
+                    <!--<div><a class="" href="/category/everything/">Everything</a></div>-->
                     <div><a class="active" href="/category/web/">Web</a></div>
                     <div><a class="" href="/play/">Labs</a></div>
                     <div><a class="" href="/portfolio/">Portfolio</a></div>
-                    <!--<div><a class="" href="/category/everything/">Everything</a></div>-->
-                    <!--<div><a class="" href="/tags/">Tags</a></div>-->
-                    <div><a class="" href="/about/">About</a></div>
+                    <div><a class="" href="/archive/">Archive</a></div>
                     <div class="social">
 <!--                        
                         <a class="social-icon" href=""><span class="fa fa-tumblr"></span></a>
@@ -108,8 +107,9 @@
 </div>
     
     
-      <div class="with-sidebar container">
+      <div class="with-sidebar container clearfix">
     <div class="sidebar">
+    <h2 class="section-title"><a href="/about/">About Me</a></h2>
     <div class="location"><i class="fa fa-map-marker"></i> Singapore</div>
     <p>&mdash; mostly about #web #technologies. </p>
     
@@ -190,123 +190,88 @@
             
           </ul>
     <h2 class="section-title"><a href="https://twitter.com/RyanYJL">Twitter</a></h2>
-    <div style="margin:0 -10px;">
+    <div style="margin:0 -10px 40px -10px;">
         <a class="twitter-timeline"  href="https://twitter.com/RyanYJL" data-chrome="noheader nofooter noborders" data-tweet-limit="3" data-link-color="#213a72" data-widget-id="284611954012725251">Tweets by @RyanYJL</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     </div>
-    <h2 class="section-title"><a href="/archive/">Archive</a></h2>
 </div>
     <div class="content">
         <div class="posts">
         
         <div class="post">
           <h2 class="post-title">
-            <a href="/web/2013/11/20/package-management-command-cheat-sheet-for-debian-linux.html">
-              Package management command cheat sheet for Debian Linux
+            <a href="/web/2012/12/17/kill-process-master.html">
+              Managing processes in unix
             </a>
           </h2>
 
-          <span class="post-date">20 Nov 2013</span>
+          <span class="post-date">17 Dec 2012</span>
 
-          <p>Here is my list of mostly frequently used <strong>apt-cache</strong> and <strong>apt-get</strong> commmands that will help you handle most if not all of the package management <u>you will ever need</u>.</p>
+          <h2>About the PS command</h2>
 
-<h3>APT-CACHE</h3>
+<p>The ps (i.e., process status) command is used to provide information about the currently running processes, including their process identification numbers (PIDs). A process, also referred to as a task, is an executing (i.e., running) instance of a program. Every process is assigned a unique PID by the system.</p>
 
-<p>Searching for package</p>
-
-<div class="highlight"><pre><code class="bash"><span class="c"># search package name &amp; description by term</span>
-<span class="nv">$ </span>apt-cache search tomcat7
-libtomcat7-java - Servlet and JSP engine -- core libraries
-tomcat7 - Servlet and JSP engine
-tomcat7-admin - Servlet and JSP engine -- admin web applications
-tomcat7-common - Servlet and JSP engine -- common files
-tomcat7-docs - Servlet and JSP engine -- documentation
-tomcat7-examples - Servlet and JSP engine -- example web applications
-tomcat7-user - Servlet and JSP engine -- tools to create user instances
-
-<span class="c"># search package name that start with term</span>
-<span class="nv">$ </span>apt-cache pkgnames tomcat7
-tomcat7-common
-tomcat7
-tomcat7-admin
-tomcat7-examples
-tomcat7-docs
-tomcat7-user
+<div class="highlight"><pre><code class="bash">ps aux <span class="p">|</span> grep php
 </code></pre></div>
 
-<h3>APT-GET</h3>
+<h2>AUX headers</h2>
 
-<p>Updating package source list</p>
+<ol>
+<li>USER</li>
+<li>PID<br></li>
+<li>%CPU </li>
+<li>%MEM</li>
+<li>VSZ</li>
+<li>RSS</li>
+<li>TT</li>
+<li>STAT</li>
+<li>STARTED</li>
+<li>TIME</li>
+<li>COMMAND</li>
+</ol>
 
-<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>sudo apt-get update
-</code></pre></div>
-
-<p>Upgrading packages</p>
-
-<div class="highlight"><pre><code class="bash"><span class="c"># upgrade packages (safe)</span>
-<span class="nv">$ </span>sudo apt-get upgrade
-
-<span class="c"># upgrade may add or remove existing packages</span>
-<span class="nv">$ </span>sudo apt-get dist-upgrade
-</code></pre></div>
-
-<p>Installing packages</p>
-
-<div class="highlight"><pre><code class="bash"><span class="c"># install specific package</span>
-<span class="nv">$ </span>sudo apt-get install tomcat7
-
-<span class="c"># remove wildcard package</span>
-<span class="nv">$ </span>sudo apt-get install <span class="s1">&#39;tomcat7*&#39;</span>
-</code></pre></div>
-
-<p>Removing packages</p>
-
-<div class="highlight"><pre><code class="bash"><span class="c"># install specific package</span>
-<span class="nv">$ </span>sudo apt-get remove tomcat7
-
-<span class="c"># remove wildcard package</span>
-<span class="nv">$ </span>sudo apt-get remove <span class="s1">&#39;tomcat7*&#39;</span>
-
-<span class="c"># remove package &amp; config files</span>
-<span class="nv">$ </span>sudo apt-get purge tomcat7
-</code></pre></div>
-
-<p>Checking for broken packages/ dependencies</p>
-
-<div class="highlight"><pre><code class="bash"><span class="c"># update package cache and check for broken dependencies</span>
-<span class="nv">$ </span>sudo apt-get check
-
-<span class="c"># install dependencies for package</span>
-<span class="nv">$ </span>sudo apt-get build-dep
-</code></pre></div>
-
-<p>Cleaning up archive files</p>
-
-<div class="highlight"><pre><code class="bash"><span class="c"># delete all stored archived .deb files</span>
-<span class="nv">$ </span>sudo apt-get clean
-
-<span class="c"># only delete .deb files that can no longer be downloaded</span>
-<span class="nv">$ </span>sudo apt-get autoclean
-</code></pre></div>
+<p>Most of the time, you only need to care about <strong>USER</strong>, <strong>PID</strong> and <strong>COMMAND</strong>. If you have </p>
 
           <div class="post-readmore">
-              <a href="/web/2013/11/20/package-management-command-cheat-sheet-for-debian-linux.html" class="more-link">Read More &rarr;</a>
+              <a href="/web/2012/12/17/kill-process-master.html" class="more-link">Read More &rarr;</a>
           </div>
         </div>
         
         <div class="post">
           <h2 class="post-title">
-            <a href="/web/2013/11/14/difference-between-redis-eval-command-and-redis-cli-eval.html">
-              Difference between redis EVAL command and redis-cli --eval
+            <a href="/web/2012/06/21/always-use-insert-on-duplicate-key-update.html">
+              Always use insert on duplicate key update
             </a>
           </h2>
 
-          <span class="post-date">14 Nov 2013</span>
+          <span class="post-date">21 Jun 2012</span>
 
-          <p>There are a number of tutorials that focus on the redis eval command (which is the interactive mode).</p>
+          <p>I think on duplicate update has to be the best MySQL function. If you are using a 2 step approach to determine whether your row exists like &#39;mysql_num_rows&#39; which is <a href="">terrible</a> or SELECT COUNT(id) FROM table and then insert your data in another query.</p>
+
+<p>You should really be only using 1 single query which is <span class="impt">insert on duplicate update</span>.</p>
+
+<div class="highlight"><pre><code class="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">table</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="k">c</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+  <span class="k">ON</span> <span class="n">DUPLICATE</span> <span class="k">KEY</span> <span class="k">UPDATE</span> <span class="k">c</span><span class="o">=</span><span class="k">c</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
+
+<p>By default, if the query is an update, it does not return a meaningful insert_id. So to work around that, I always use it as such:</p>
+
+<div class="highlight"><pre><code class="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">users</span> <span class="p">(</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">created</span><span class="p">,</span> <span class="n">modified</span>  
+<span class="k">VALUES</span> <span class="p">(</span>
+    <span class="s1">&#39;John Doe&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;username@example.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2011-01-01 00:00:00&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2011-01-01 00:00:00&#39;</span>
+<span class="p">)</span>
+  <span class="k">ON</span> <span class="n">DUPLICATE</span> <span class="k">KEY</span> <span class="k">UPDATE</span> <span class="n">id</span> <span class="o">=</span> <span class="n">LAST_INSERT_ID</span><span class="p">(</span> <span class="n">id</span> <span class="p">),</span> <span class="n">modified</span> <span class="o">=</span> <span class="k">VALUES</span><span class="p">(</span> <span class="n">modified</span> <span class="p">);</span>
+</code></pre></div>
+
+<p>If you need to update more values, just stick in a comma and add in the format COLUMN = VALUES( COLUMN ).</p>
+
+<p>If you are not using it, use it.</p>
 
           <div class="post-readmore">
-              <a href="/web/2013/11/14/difference-between-redis-eval-command-and-redis-cli-eval.html" class="more-link">Read More &rarr;</a>
+              <a href="/web/2012/06/21/always-use-insert-on-duplicate-key-update.html" class="more-link">Read More &rarr;</a>
           </div>
         </div>
         
@@ -314,7 +279,7 @@ tomcat7-user
 
       <div class="pagination">
         
-          <a class="pagination-item older" href="/page5">Older</a>
+          <span class="pagination-item older">Older</span>
         
         
           

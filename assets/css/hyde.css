@@ -310,16 +310,16 @@ ul.tags-normal {
 
 .sidebar {
     width: 11rem;
-    padding: 4rem 1rem 0 0;
-    position: absolute;
-    top: 0;
-    left: 1rem;
+    padding: 4rem 2rem 0 0;
+    float: left;
 }
 .container.with-sidebar {
     position: relative;
+    clear: both;
 }
 .container.with-sidebar .content {
-    margin-left: 12rem;
+    float: left;
+    width: 24rem;
 }
 /* Container
 *

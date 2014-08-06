@@ -83,12 +83,11 @@
                 <div class="menu clearfix">
                     
                     
+                    <!--<div><a class="" href="/category/everything/">Everything</a></div>-->
                     <div><a class="active" href="/category/web/">Web</a></div>
                     <div><a class="" href="/play/">Labs</a></div>
                     <div><a class="" href="/portfolio/">Portfolio</a></div>
-                    <!--<div><a class="" href="/category/everything/">Everything</a></div>-->
-                    <!--<div><a class="" href="/tags/">Tags</a></div>-->
-                    <div><a class="" href="/about/">About</a></div>
+                    <div><a class="" href="/archive/">Archive</a></div>
                     <div class="social">
 <!--                        
                         <a class="social-icon" href=""><span class="fa fa-tumblr"></span></a>
@@ -108,8 +107,9 @@
 </div>
     
     
-      <div class="with-sidebar container">
+      <div class="with-sidebar container clearfix">
     <div class="sidebar">
+    <h2 class="section-title"><a href="/about/">About Me</a></h2>
     <div class="location"><i class="fa fa-map-marker"></i> Singapore</div>
     <p>&mdash; mostly about #web #technologies. </p>
     
@@ -190,120 +190,142 @@
             
           </ul>
     <h2 class="section-title"><a href="https://twitter.com/RyanYJL">Twitter</a></h2>
-    <div style="margin:0 -10px;">
+    <div style="margin:0 -10px 40px -10px;">
         <a class="twitter-timeline"  href="https://twitter.com/RyanYJL" data-chrome="noheader nofooter noborders" data-tweet-limit="3" data-link-color="#213a72" data-widget-id="284611954012725251">Tweets by @RyanYJL</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     </div>
-    <h2 class="section-title"><a href="/archive/">Archive</a></h2>
 </div>
     <div class="content">
         <div class="posts">
         
         <div class="post">
           <h2 class="post-title">
-            <a href="/web/2013/11/28/how-to-install-luarocks-on-ubuntu.html">
-              How to install luarocks (Unix)
-            </a>
-          </h2>
-
-          <span class="post-date">28 Nov 2013</span>
-
-          <p>LuaRocks, a deployment and management system for Lua modules. Like homebrew for mac users, luarocks has a repository that makes the installation of lua modules a breeze.</p>
-
-          <div class="post-readmore">
-              <a href="/web/2013/11/28/how-to-install-luarocks-on-ubuntu.html" class="more-link">Read More &rarr;</a>
-          </div>
-        </div>
-        
-        <div class="post">
-          <h2 class="post-title">
-            <a href="/web/2013/11/20/package-management-command-cheat-sheet-for-redhat-linux.html">
-              Package management command cheat sheet for Redhat Linux
+            <a href="/web/2013/11/20/package-management-command-cheat-sheet-for-debian-linux.html">
+              Package management command cheat sheet for Debian Linux
             </a>
           </h2>
 
           <span class="post-date">20 Nov 2013</span>
 
-          <p>Here is my list of mostly frequently used <strong>yum</strong> commmnds that will help you handle most if not all of the package management <u>you will ever need</u>.</p>
+          <p>Here is my list of mostly frequently used <strong>apt-cache</strong> and <strong>apt-get</strong> commmands that will help you handle most if not all of the package management <u>you will ever need</u>.</p>
 
-<h2>Updating repositories</h2>
-
-<p>If you are using <strong>Fedora</strong>, then you usually have the latest repository without doing much.</p>
-
-<p>If you are using <strong>CentOS</strong> or <strong>RHEL</strong>, then you best bet is to get the repo from <a href="https://webtatic.com/projects/yum-repository/">webtatic</a>.
-The installation of the repo is simply &quot;rpm -Uvh&quot; followed by the repo url.</p>
-
-<h3>YUM</h3>
+<h3>APT-CACHE</h3>
 
 <p>Searching for package</p>
 
 <div class="highlight"><pre><code class="bash"><span class="c"># search package name &amp; description by term</span>
-<span class="nv">$ </span>yum search tomcat
+<span class="nv">$ </span>apt-cache search tomcat7
+libtomcat7-java - Servlet and JSP engine -- core libraries
+tomcat7 - Servlet and JSP engine
+tomcat7-admin - Servlet and JSP engine -- admin web applications
+tomcat7-common - Servlet and JSP engine -- common files
+tomcat7-docs - Servlet and JSP engine -- documentation
+tomcat7-examples - Servlet and JSP engine -- example web applications
+tomcat7-user - Servlet and JSP engine -- tools to create user instances
 
 <span class="c"># search package name that start with term</span>
-<span class="nv">$ </span>yum list tomcat
+<span class="nv">$ </span>apt-cache pkgnames tomcat7
 tomcat7-common
 tomcat7
 tomcat7-admin
 tomcat7-examples
 tomcat7-docs
 tomcat7-user
+</code></pre></div>
 
-<span class="c"># list all installed packages in system </span>
-<span class="nv">$ </span>yum list installed
+<h3>APT-GET</h3>
+
+<p>Updating package source list</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>sudo apt-get update
 </code></pre></div>
 
 <p>Upgrading packages</p>
 
 <div class="highlight"><pre><code class="bash"><span class="c"># upgrade packages (safe)</span>
-<span class="nv">$ </span>yum update
+<span class="nv">$ </span>sudo apt-get upgrade
 
-<span class="c"># upgrade packages and remove existing obsolete packages</span>
-<span class="c"># which you may be using</span>
-<span class="nv">$ </span>yum upgrade
+<span class="c"># upgrade may add or remove existing packages</span>
+<span class="nv">$ </span>sudo apt-get dist-upgrade
 </code></pre></div>
 
 <p>Installing packages</p>
 
 <div class="highlight"><pre><code class="bash"><span class="c"># install specific package</span>
-<span class="nv">$ </span>yum install tomcat7
+<span class="nv">$ </span>sudo apt-get install tomcat7
 
 <span class="c"># remove wildcard package</span>
-<span class="nv">$ </span>yum install <span class="s1">&#39;tomcat7*&#39;</span>
-
-<span class="c"># install package group</span>
-<span class="nv">$ </span>yum groupinstall <span class="s1">&#39;Development Tools&#39;</span>
+<span class="nv">$ </span>sudo apt-get install <span class="s1">&#39;tomcat7*&#39;</span>
 </code></pre></div>
 
 <p>Removing packages</p>
 
 <div class="highlight"><pre><code class="bash"><span class="c"># install specific package</span>
-<span class="nv">$ </span>yum erase tomcat7
+<span class="nv">$ </span>sudo apt-get remove tomcat7
 
 <span class="c"># remove wildcard package</span>
-<span class="nv">$ </span>yum erase <span class="s1">&#39;tomcat7*&#39;</span>
+<span class="nv">$ </span>sudo apt-get remove <span class="s1">&#39;tomcat7*&#39;</span>
+
+<span class="c"># remove package &amp; config files</span>
+<span class="nv">$ </span>sudo apt-get purge tomcat7
 </code></pre></div>
 
 <p>Checking for broken packages/ dependencies</p>
 
 <div class="highlight"><pre><code class="bash"><span class="c"># update package cache and check for broken dependencies</span>
-<span class="nv">$ </span>yum check
+<span class="nv">$ </span>sudo apt-get check
 
-<span class="c"># check for packages to update</span>
-<span class="nv">$ </span>yum check-update
-
-<span class="c"># reinstall package and dependencies</span>
-<span class="nv">$ </span>yum reinstall
+<span class="c"># install dependencies for package</span>
+<span class="nv">$ </span>sudo apt-get build-dep
 </code></pre></div>
 
 <p>Cleaning up archive files</p>
 
-<div class="highlight"><pre><code class="bash"><span class="c"># delete all cached data</span>
-<span class="nv">$ </span>yum clean
+<div class="highlight"><pre><code class="bash"><span class="c"># delete all stored archived .deb files</span>
+<span class="nv">$ </span>sudo apt-get clean
+
+<span class="c"># only delete .deb files that can no longer be downloaded</span>
+<span class="nv">$ </span>sudo apt-get autoclean
 </code></pre></div>
 
           <div class="post-readmore">
-              <a href="/web/2013/11/20/package-management-command-cheat-sheet-for-redhat-linux.html" class="more-link">Read More &rarr;</a>
+              <a href="/web/2013/11/20/package-management-command-cheat-sheet-for-debian-linux.html" class="more-link">Read More &rarr;</a>
+          </div>
+        </div>
+        
+        <div class="post">
+          <h2 class="post-title">
+            <a href="/web/2013/11/14/difference-between-redis-eval-command-and-redis-cli-eval.html">
+              Difference between redis EVAL command and redis-cli --eval
+            </a>
+          </h2>
+
+          <span class="post-date">14 Nov 2013</span>
+
+          <p>There are a number of tutorials that focus on the redis eval command (which is the interactive mode).</p>
+
+          <div class="post-readmore">
+              <a href="/web/2013/11/14/difference-between-redis-eval-command-and-redis-cli-eval.html" class="more-link">Read More &rarr;</a>
+          </div>
+        </div>
+        
+        <div class="post">
+          <h2 class="post-title">
+            <a href="/web/2013/05/23/what-is-your-use-for-redis.html">
+              What is your use for Redis?
+            </a>
+          </h2>
+
+          <span class="post-date">23 May 2013</span>
+
+          <p>Personally, I use redis for storing/ caching simple stats like google analytics, caching mysql queries and counter stats for applications. </p>
+
+<p>I think the main use for redis is strictly to caching at abstract query level. If you are planning to store records, I think using solr will a more suitable option.</p>
+
+<p>Stackoverflow also primary uses redis for <a href="http://meta.stackexchange.com/questions/69164/does-stack-overflow-use-caching-and-if-so-how/69172#69172">caching</a>.</p>
+
+          <div class="post-readmore">
+              <a href="/web/2013/05/23/what-is-your-use-for-redis.html" class="more-link">Read More &rarr;</a>
           </div>
         </div>
         
