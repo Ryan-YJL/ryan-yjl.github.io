@@ -42,7 +42,7 @@ html {
   }
 }
 body {
-    min-width: 34rem;
+    min-width: 38rem;
 }
 .notification {
     font-size: 14px;
@@ -337,6 +337,13 @@ ul.tags-normal {
   margin-top: 0;
   margin-bottom: 0;
 }
+.archive-description {
+  display: block;
+  font-size: 0.8rem;
+}
+.archive-item .tags {
+  margin-top: 1rem;
+}
 
 @media (min-width: 34rem) {
   .archive-item {
@@ -372,7 +379,7 @@ ul.tags-normal {
 }
 @media (min-width:48rem) {
   .content {
-    max-width: 38rem;
+    /*max-width: 38rem;*/
   }
 }
 @media (min-width:64rem) {
