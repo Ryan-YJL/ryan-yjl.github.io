@@ -28,7 +28,7 @@
         <meta property="og:site_name" content="Ryan Yang" />
         <meta property="article:publisher" content="https://www.facebook.com/RyanYJL" />
         <meta property="article:section" content="Article" />
-        <meta property="og:image" content="/assets/img/logo.png" />
+        <meta property="og:image" content="http://localhost:4000/assets/img/logo.png" />
         <meta property="og:image:width" content="300" />
         <meta property="og:image:height" content="300" />
         <meta name="twitter:card" content="summary"/>
@@ -51,7 +51,7 @@
         <link rel="shortcut icon" href="/assets/favicon.ico">
 
         <!-- RSS -->
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml" />
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="http://localhost:4000/atom.xml" />
         <script>
             if (navigator.userAgent.indexOf('Mac OS X') == -1) {
                 $('head').append('<link rel="stylesheet" href="/assets/css/non-mac.css" type="text/css" />');
@@ -82,12 +82,12 @@
                 <div class="menu clearfix">
                     
                     
-                    <!--<div><a class="" href="/category/everything/">Everything</a></div>-->
-                    <div><a class="active" href="/category/web/">Web</a></div>
-                    <div><a class="" href="/play/">Play</a></div>
-                    <div><a class="" href="/portfolio/">Portfolio</a></div>
-                    <div><a class="" href="/pinboard/">Pinboard</a></div>
-                    <div><a class="" href="/archive/">Archive</a></div>
+                    <!--<div><a class="" href="http://localhost:4000/category/everything/">Everything</a></div>-->
+                    <div><a class="active" href="http://localhost:4000/category/web/">Web</a></div>
+                    <div><a class="" href="http://localhost:4000/play/">Play</a></div>
+                    <div><a class="" href="http://localhost:4000/portfolio/">Portfolio</a></div>
+                    <div><a class="" href="http://localhost:4000/pinboard/">Pinboard</a></div>
+                    <div><a class="" href="http://localhost:4000/archive/">Archive</a></div>
                     <div class="social">
 <!--                        
                         <a class="social-icon" href=""><span class="fa fa-tumblr"></span></a>
@@ -119,7 +119,7 @@
                         }
                         //-->
                         </script>
-                        <a class="social-icon" href="/atom.xml"><span class="fa fa-rss"></span></a>
+                        <a class="social-icon" href="http://localhost:4000/atom.xml"><span class="fa fa-rss"></span></a>
                     </div>
                 </div>
             </div>  
@@ -131,7 +131,7 @@
       <div class="content container">
     <div class="breadcrumbs">
         <a href="/">Home</a> &raquo; 
-        <a href="/category/web">Web</a> &raquo; 
+        <a href="http://localhost:4000/category/web">Web</a> &raquo; 
         <a href="/web/2014/01/01/optimizing-case-sensitive-unique-key-query-without-using-utf8_cs-collation.html">Optimizing Case sensitive unique key query without using utf8_bin-collation</a>
     </div>
     <div class="post">
@@ -139,56 +139,53 @@
       <div class="post-date">January 1, 2014</div>
       <!-- Go to www.addthis.com/dashboard to customize your tools -->
 
-      <!--<div class="post-date post-details">Published January 1, 2014 by <a href="/about/">Ryan Yang</a></div>-->
+      <!--<div class="post-date post-details">Published January 1, 2014 by <a href="http://localhost:4000/about/">Ryan Yang</a></div>-->
       <p>Most users of mysql would likely to have the collation of their database set to <span class="impt">utf8_general_ci</span>.</p>
 
-<p>Say you have a need to have a table of items with &#39;name&#39; as a unique key and want a name like &quot;Guns N&#39; Roses&quot; to be different from &quot;Guns n&#39; Roses&quot;</p>
+<p>Say you have a need to have a table of items with ‘name’ as a unique key and want a name like “Guns N’ Roses” to be different from “Guns n’ Roses”</p>
 
 <p>Right away you would do something like:</p>
 
-<div class="highlight"><pre><code class="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">bands</span> <span class="k">ALTER</span> <span class="k">COLUMN</span> <span class="n">name</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">COLLATE</span> <span class="n">utf8_bin</span>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">bands</span> <span class="k">ALTER</span> <span class="k">COLUMN</span> <span class="n">name</span> <span class="n">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">COLLATE</span> <span class="n">utf8_bin</span>
 
-<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">bands</span> <span class="k">ADD</span> <span class="k">UNIQUE</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span>
-</code></pre></div>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">bands</span> <span class="k">ADD</span> <span class="k">UNIQUE</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span></code></pre></figure>
 
-<p>Alternatively, you can do a one way hash for &#39;name&#39; field with md5 and store it as &#39;name_hash&#39;.</p>
+<p>Alternatively, you can do a one way hash for ‘name’ field with md5 and store it as ‘name_hash’.</p>
 
-<p><strong>**Note you still need to set it as a unique key but because md5 strings are all in 32 digit hexadecimal number, you don&#39;t have to collate your hash column differently from the rest of your table.</strong></p>
+<p><strong>**Note you still need to set it as a unique key but because md5 strings are all in 32 digit hexadecimal number, you don’t have to collate your hash column differently from the rest of your table.</strong></p>
 
-<p>This is similar to how <span class="impt">utf8_bin compares characters in binary format</span>. This means that characters like &quot;å&quot; will not be treated like &quot;a&quot;.</p>
+<p>This is similar to how <span class="impt">utf8_bin compares characters in binary format</span>. This means that characters like “å” will not be treated like “a”.</p>
 
-<hr>
+<hr />
 
 <p>In doing so, you can simply do a search</p>
 
-<div class="highlight"><pre><code class="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
-<span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;Romeo &amp; Juliet&#39;</span><span class="p">;</span>
+<span class="nv">$name</span> <span class="o">=</span> <span class="s1">'Romeo &amp; Juliet'</span><span class="p">;</span>
 <span class="nv">$name_hash</span> <span class="o">=</span> <span class="nb">md5</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
 
-<span class="cp">?&gt;</span><span class="x"></span>
-</code></pre></div>
+<span class="cp">?&gt;</span></code></pre></figure>
 
-<div class="highlight"><pre><code class="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
-<span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM bands WHERE name_hash = &quot;</span><span class="o">.</span><span class="nb">md5</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
+<span class="nv">$sql</span> <span class="o">=</span> <span class="s2">"SELECT * FROM bands WHERE name_hash = "</span><span class="o">.</span><span class="nb">md5</span><span class="p">(</span><span class="nv">$name</span><span class="p">);</span>
 
-<span class="cp">?&gt;</span><span class="x"></span>
-</code></pre></div>
+<span class="cp">?&gt;</span></code></pre></figure>
 
 <p>Now, you may think, why use a hash when you can let mysql do all the heavy lifting? The benefit comes when there are times you have <strong>multiple unique keys</strong> and have no real use for the unique keys except to check if the row exist.</p>
 
 <p>You can combine all the unique fields into one <span class="impt">single hash column</span> where you can query like so.</p>
 
-<div class="highlight"><pre><code class="php"><span class="cp">&lt;?php</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
 
-<span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT id FROM bands WHERE hash = &quot;</span><span class="o">.</span><span class="nb">md5</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">$field_1</span><span class="s2"> , </span><span class="si">$field_2</span><span class="s2"> , </span><span class="si">$field_3</span><span class="s2"> , </span><span class="si">$field_4</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="nv">$sql</span> <span class="o">=</span> <span class="s2">"SELECT id FROM bands WHERE hash = "</span><span class="o">.</span><span class="nb">md5</span><span class="p">(</span><span class="s2">"</span><span class="nv">$field_1</span><span class="s2"> , </span><span class="nv">$field_2</span><span class="s2"> , </span><span class="nv">$field_3</span><span class="s2"> , </span><span class="nv">$field_4</span><span class="s2">"</span><span class="p">);</span>
 
 
-<span class="cp">?&gt;</span><span class="x"></span>
-</code></pre></div>
+<span class="cp">?&gt;</span></code></pre></figure>
 
 <p>This saves mysql from checking multiple columns for matches simply to fulfill a check exist query.</p>
+
 
 
       <div class="post-date">( Last modified 26 July 2014, 4:28 PM )</div>
@@ -196,7 +193,7 @@
         
         <ul class="tags clearfix">
           
-            <li><a href="/tag/mysql">mysql</a> </li>
+            <li><a href="http://localhost:4000/tag/mysql">mysql</a> </li>
           
         </ul>
         
@@ -225,6 +222,16 @@
         
           <li>
               <div class="archive-item">
+                <span class="post-date archive-date">November 3, 2016</span>
+                <a href="/web/2016/11/03/choose-grunt-gulp-or-npm.html" class="archive-title">
+                  Choose Grunt, GulpJS or NPM?
+                </a>
+            </div>
+
+          </li>
+        
+          <li>
+              <div class="archive-item">
                 <span class="post-date archive-date">April 3, 2014</span>
                 <a href="/web/2014/04/03/using-subversion-gui-synx-to-publish-your-wordpress-plugin.html" class="archive-title">
                   Using subversion (GUI) SVNx to publish your WordPress plugin
@@ -243,16 +250,6 @@
 
           </li>
         
-          <li>
-              <div class="archive-item">
-                <span class="post-date archive-date">February 27, 2014</span>
-                <a href="/web/2014/02/27/using-eval-with-redis-cli-and-lua.html" class="archive-title">
-                  Using eval with redis-cli and lua
-                </a>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
     <div>
@@ -262,34 +259,43 @@
     
     
     
-    <li><a href="/tag/debian">debian (1)</a></li>
+    <li><a href="http://localhost:4000/tag/debian">debian (1)</a></li>
     
     
-    <li><a href="/tag/fedora">fedora (1)</a></li>
+    <li><a href="http://localhost:4000/tag/fedora">fedora (1)</a></li>
     
     
-    <li><a href="/tag/linux">linux (1)</a></li>
+    <li><a href="http://localhost:4000/tag/javascript">javascript (1)</a></li>
     
     
-    <li><a href="/tag/lua">lua (3)</a></li>
+    <li><a href="http://localhost:4000/tag/linux">linux (1)</a></li>
     
     
-    <li><a href="/tag/mysql">mysql (2)</a></li>
+    <li><a href="http://localhost:4000/tag/lua">lua (3)</a></li>
     
     
-    <li><a href="/tag/redhat">redhat (1)</a></li>
+    <li><a href="http://localhost:4000/tag/mysql">mysql (2)</a></li>
     
     
-    <li><a href="/tag/redis">redis (3)</a></li>
+    <li><a href="http://localhost:4000/tag/nodejs">nodejs (1)</a></li>
     
     
-    <li><a href="/tag/ubuntu">ubuntu (2)</a></li>
+    <li><a href="http://localhost:4000/tag/npm">npm (1)</a></li>
     
     
-    <li><a href="/tag/unix">unix (1)</a></li>
+    <li><a href="http://localhost:4000/tag/redhat">redhat (1)</a></li>
     
     
-    <li><a href="/tag/wordpress">wordpress (2)</a></li>
+    <li><a href="http://localhost:4000/tag/redis">redis (3)</a></li>
+    
+    
+    <li><a href="http://localhost:4000/tag/ubuntu">ubuntu (2)</a></li>
+    
+    
+    <li><a href="http://localhost:4000/tag/unix">unix (1)</a></li>
+    
+    
+    <li><a href="http://localhost:4000/tag/wordpress">wordpress (2)</a></li>
     
 </ul>
 
@@ -307,11 +313,11 @@
     
     <div class="footer">
     <div class="container">
-        <p class="copyright">&copy; 2014. Ryan-YJL. Powered by <a href="http://jekyllrb.com/">Jekyll</a>. Hosted by <a href="https://github.com">GitHub</a>.
+        <p class="copyright">&copy; 2016. Ryan-YJL. Powered by <a href="http://jekyllrb.com/">Jekyll</a>. Hosted by <a href="https://github.com">GitHub</a>.
         <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." style="float: right;"><img alt="Creative Commons License" style="margin-top: 1px; border-width: 0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a> 
     </div>
 </div>
-<script src='/assets/js/scrollReveal.js'></script>
+<script src='http://localhost:4000/assets/js/scrollReveal.js'></script>
 <script>
   window.scrollReveal = new scrollReveal();
 </script>

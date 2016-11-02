@@ -1,4 +1,3 @@
-_site
 .DS_Store
 *.sublime-project
 *.sublime-workspace
@@ -6,6 +5,6 @@ codekit-config.json
 node_modules
 _asset_bundler_cache
 nbproject/
-_dev/
+.dev/
 *.bak
 *.DS_Store 

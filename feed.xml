@@ -1,21 +1,648 @@
----
-layout: null
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-<title>{{ site.name | xml_escape }}</title>
-<description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>	
-<link>{{ site.url }}</link>
-<atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
-{% for post in site.posts limit:10 %}
+<title>Ryan Yang</title>
+<description>Everything about Ryan Yang J.L.</description>	
+<link>http://localhost:4000</link>
+<atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+
 <item>
-<title>{{ post.title | xml_escape }}</title>
-<description>{{ post.content | xml_escape }}</description>
-<pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
-<link>{{ site.url }}{{ post.url }}</link>
-<guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
+<title>Choose Grunt, GulpJS or NPM?</title>
+<description>&lt;p&gt;Grunt, Gulp, and npm are the three build tools most frequently used in front-end development workflows. What are the differences? Which should I use to start? In this article, I will briefly summarize the areas where each tool excels in and give you a glimpse of how you can easily utilize these tools to automate your workflows or even adopt best practices (if you haven’t already do so).&lt;/p&gt;
+
+&lt;h3 id=&quot;grunt--configuration-over-coding&quot;&gt;Grunt : Configuration over coding&lt;/h3&gt;
+&lt;p&gt;Favoring task configuration over implementation make the process of re-read and fix old scripts more easy, Grunt implements the concatenation and minification process for you, it’s smart enough to care of the rest, you only  need to specify input and output files. Grunt configurations (JSON objects) are easy to understand when they are small, but as they grow, it is a bit more difficult to read and understand  huge configurations.
+Grunt looks for its configuration under a property with the same name. Multi-tasking can have multi configurations, defined using arbitrarily named “targets.” In the example below, the concat task has “foo” and “bar” targets, while the uglify task only has a “bar” target.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;concat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// concat task &quot;foo&quot; target options and files go here.&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// concat task &quot;bar&quot; target options and files go here.&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;uglify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// uglify task &quot;bar&quot; target options and files go here.&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;gulp--code-driven-build-tool&quot;&gt;Gulp : Code-driven build tool&lt;/h3&gt;
+&lt;p&gt;Gulp uses streams instead of temporary files/folders, it makes IO more faster. Gulp places a little more emphasis on code over configuration with the use of pipes and streams. Gulp tasks are also very readable and easy to debug since you can set breakpoints in it, compared to no debugging in the configuration aspects of Grunt.&lt;/p&gt;
+
+&lt;p&gt;As an example, we will pipe through gulp-size , which calculate the size of the library that are in the buffer, and print that to the terminal. Note that if you add it before Uglify then you’d get the unminified size :&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'gulp'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;uglify&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'gulp-uglify'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'gulp-size'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'build'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'./myscript.js'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;uglify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gulp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'./build'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;npm-as-a-build-tool&quot;&gt;NPM as a build tool&lt;/h3&gt;
+&lt;p&gt;In order to use npm  as a task runner, we add the required properties to our packages.json, the name of the property will be the task name. Using npm has several obvious advantages as it hosts tens of thousands of packages and also allows for the use of the command line. An added bonus is that it also removes complexity from your project since you don’t need any other specific APIs of another tool or the inherent dependencies of the tools that you are using.&lt;/p&gt;
+
+&lt;p&gt;As an example, in the following package file, we will just copy a directory in our JavaScript build flow and compile an Stylus stylesheet during our CSS build flow. In this case, we’re using a single “&amp;amp;” to run the tasks asynchronously.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;build-js&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;cp -r src/js/ dist/js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;build-css&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;stylus src/css/all.styl -o dist/css&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;build&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;npm run build-js &amp;amp; npm run build-css&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;devDependencies&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;stylus&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;latest&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;wrap-up&quot;&gt;Wrap Up&lt;/h3&gt;
+&lt;p&gt;I hope you’ve been able to learn a few things about using Grunt, Gulp, and npm as a build process in general. During rapid prototyping, automation tools might be a step that you wouldn’t consider, but once you begin to juggle multiple projects, maintenance becomes a chore and soon you find yourself appreciating these build tools which can help you quickly optimize your assets for quicker deployments and updates.&lt;/p&gt;
+
+&lt;!-- {
+  &quot;devDependencies&quot;: {
+    &quot;jshint&quot;: &quot;latest&quot;,
+    &quot;uglify&quot;: &quot;latest&quot;,
+    &quot;stylus&quot;: &quot;latest&quot;,
+    &quot;cssmin&quot;: &quot;latest&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;scss&quot;: &quot;node-sass --output-style compressed -o dist/css src/scss&quot;
+    &quot;lint&quot;: &quot;lint src/js/*&quot;,
+    &quot;uglify&quot;: &quot;uglifyjs src/js/*.js -m -o dist/js/app.js&quot;
+    &quot;build:css&quot;: &quot;npm run scss &amp;&amp; npm run autoprefixer&quot;,
+    &quot;build:js&quot;: &quot;npm run lint &amp;&amp; npm run uglify&quot;,
+    &quot;build&quot;: &quot;npm run build:css &amp;&amp; npm run build:js&quot;
+    &quot;serve&quot;: &quot;browser-sync start --server --files 'dist/css/*.css, dist/js/*.js'&quot;
+  }
+} --&gt;
+</description>
+<pubDate>Thu, 03 Nov 2016 00:00:00 +0800</pubDate>
+<link>http://localhost:4000/web/2016/11/03/choose-grunt-gulp-or-npm.html</link>
+<guid isPermaLink="true">http://localhost:4000/web/2016/11/03/choose-grunt-gulp-or-npm.html</guid>
 </item>
-{% endfor %}
+
+<item>
+<title>Using subversion (GUI) SVNx to publish your WordPress plugin</title>
+<description>&lt;p&gt;You have just got approved by WordPress and handed your official WordPress repository and want to get up and running with publishing your WordPress plugin at the plugin directory.&lt;/p&gt;
+
+&lt;p&gt;But you have been using git have no time to learn all the nooks and crannies of SVN, what should you do?&lt;/p&gt;
+
+&lt;p&gt;If you are using a mac, I would recommend you to use SVNx. It is free and easy to use and you can download it &lt;a href=&quot;https://code.google.com/p/svnx/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once you downloaded, simply open up the app and go to the top menu bar and right under ‘Window’, you will see ‘&lt;strong&gt;Repositories&lt;/strong&gt;’ and ‘&lt;strong&gt;Working Copies&lt;/strong&gt;’.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/uploads/svnx-screenshot-1.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Basically, ‘&lt;strong&gt;Repositories&lt;/strong&gt;’ is the one where you specify your WordPress plugin repository.&lt;/p&gt;
+
+&lt;p&gt;So you can go ahead and hit the “+” sign to create a respository.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Enter a &lt;strong&gt;Name&lt;/strong&gt; for your repository (can be anything)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Path&lt;/strong&gt; which will be something like http://plugins.svn.wordpress.org/your-plugin-name/&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;User&lt;/strong&gt; and &lt;strong&gt;Pass&lt;/strong&gt; which will be your wordpress.org credentials&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/uploads/svnx-screenshot-2.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If your svn plugin url and credentials are right, at the GUI you will see that under ‘root’, there are 4 folders.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;assets&lt;/li&gt;
+  &lt;li&gt;branches&lt;/li&gt;
+  &lt;li&gt;tags&lt;/li&gt;
+  &lt;li&gt;trunk&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Go ahead and svn checkout the files to a local directory.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/uploads/svnx-screenshot-3.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next go to Window -&amp;gt; Working Copies and hit the “+” sign to create a “Working Copy”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/uploads/svnx-screenshot-4.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Enter a &lt;strong&gt;Name&lt;/strong&gt; for your working copy. (can be anything)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Path&lt;/strong&gt; which will be the location where you checked out your respository in the previous step.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;User&lt;/strong&gt; and &lt;strong&gt;Pass&lt;/strong&gt; which will be your wordpress.org credentials.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;2) Copy all your plugin files to the trunk folder. ( This is where your development files should be. )&lt;/p&gt;
+
+&lt;p&gt;Now when you double click on your &lt;strong&gt;Working Copy&lt;/strong&gt;, you will see the files that have been added to your directory. If a new file is added, you will see an ‘A’ in front of the file path. If file has been changed, you will see an ‘M’ instead.&lt;/p&gt;
+
+&lt;p&gt;To upload your files to your repository is simple. Just select all the files you want and click ‘Add’ or ‘Update’ and then ‘Commit’ to commit your changes to the wordpress repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/uploads/svnx-screenshot-5.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you have committed the changes, you will see a Rev # and date/time along with your commit message over at the Respositories window.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/uploads/svnx-screenshot-6.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now to tag your release, all you need to do is to svn copy the newly updated ‘trunk’ folder to the ‘tags’ folder and indicate a ‘version’. Make sure that this version corresponds to the version info specified in your plugin main php file.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/uploads/svnx-screenshot-7.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is a simplified workflow of a WordPress plugin update using SVNx&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Do all your changes in the ‘trunk’ folder&lt;/li&gt;
+  &lt;li&gt;Update the ‘Stable tag’ in the readme file.&lt;/li&gt;
+  &lt;li&gt;Update the ‘Version’ in your plugin’s main PHP file.&lt;/li&gt;
+  &lt;li&gt;Commit the additions/updates in the ‘trunk’ folder at ‘Working Copies’ window&lt;/li&gt;
+  &lt;li&gt;Go over to ‘Repositories’ window&lt;/li&gt;
+  &lt;li&gt;Tag the new version by copying the ‘trunk’ folder to a new tag under the ‘tags’ folder.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;things-to-note&quot;&gt;Things to note&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Make sure you are selecting the trunk folder before you click on ‘svn copy’ and that you have selected the ‘tags’ folder for the target.&lt;/li&gt;
+  &lt;li&gt;Always remember to update your ‘Stable tag’ in the readme.txt file&lt;/li&gt;
+  &lt;li&gt;You need to include ‘Version’ info the plugin main php, your plugin page will not show the correct download version.&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+<pubDate>Thu, 03 Apr 2014 00:00:00 +0800</pubDate>
+<link>http://localhost:4000/web/2014/04/03/using-subversion-gui-synx-to-publish-your-wordpress-plugin.html</link>
+<guid isPermaLink="true">http://localhost:4000/web/2014/04/03/using-subversion-gui-synx-to-publish-your-wordpress-plugin.html</guid>
+</item>
+
+<item>
+<title>Using subversion (Command Line) to publish your WordPress plugin</title>
+<description>&lt;p&gt;I recently had to write a WordPress plugin for my web application. Here is, step-by-step guide to publish your WordPress plugin.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-you-need&quot;&gt;What you need.&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;A WordPress.org account&lt;/li&gt;
+  &lt;li&gt;Learn how to use Subversion (SVN)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;prerequistie&quot;&gt;Prerequistie&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Your own WordPress plugin&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;using-svn&quot;&gt;Using SVN&lt;/h2&gt;
+
+&lt;p&gt;There are a number of ways to publish your WordPress.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You can either use svn via the command line (or)&lt;/li&gt;
+  &lt;li&gt;if you are new to svn and want to &lt;a href=&quot;&quot;&gt;get going with a GUI&lt;/a&gt;. I recommend you to use &lt;a href=&quot;https://code.google.com/p/svnx/&quot;&gt;SVNx&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If you are more familar with the command line, you can simply open up Terminal on your mac.&lt;/p&gt;
+
+&lt;p&gt;If you don’t know if you have svn installed, check by using ‘which’ command.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;which svn
+/usr/bin/svn&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;1) Checkout the repository files from WordPress to your local directory&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;svn co http://plugins.svn.wordpress.org/your-plugin-name my-local-dir&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;You will notice that your my-local-dir now has 4 folders&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;assets&lt;/li&gt;
+  &lt;li&gt;branches&lt;/li&gt;
+  &lt;li&gt;tags&lt;/li&gt;
+  &lt;li&gt;trunk&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;2) Copy all your plugin files to the trunk folder. ( This is where your development files should be. )&lt;/p&gt;
+
+&lt;p&gt;3) Add files to your repository trunk&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;svn add trunk/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;svn ci -m &lt;span class=&quot;s1&quot;&gt;'First commit'&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;4) Tag your release version&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;svn cp trunk tags/1.0
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;svn ci -m &lt;span class=&quot;s2&quot;&gt;&quot;Tagging version 1.0&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Here is a simplified workflow of a WordPress plugin update&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Do all your changes in the “trunk” folder&lt;/li&gt;
+  &lt;li&gt;Update the “Stable tag” in the readme file.&lt;/li&gt;
+  &lt;li&gt;Update the “Version” in your plugin’s main PHP file.&lt;/li&gt;
+  &lt;li&gt;Commit the changes in the “trunk” folder&lt;/li&gt;
+  &lt;li&gt;Tag the new version by copying the “trunk” folder to a new tag under the “tags” folder.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;things-to-note&quot;&gt;Things to note&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Always remember to update your “Stable tag” in the readme.txt file&lt;/li&gt;
+  &lt;li&gt;You need to include “Version” info the plugin main php, your plugin page will not show the Download Version 1.0 correctly.&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+<pubDate>Thu, 03 Apr 2014 00:00:00 +0800</pubDate>
+<link>http://localhost:4000/web/2014/04/03/using-subversion-ci-to-publish-your-wordpress-plugin.html</link>
+<guid isPermaLink="true">http://localhost:4000/web/2014/04/03/using-subversion-ci-to-publish-your-wordpress-plugin.html</guid>
+</item>
+
+<item>
+<title>Using eval with redis-cli and lua</title>
+<description>&lt;p&gt;Recently, I had to use redis for some bash scripting and came across lua as the –eval option on redis command line.&lt;/p&gt;
+
+&lt;p&gt;Lua come across as a very simple scripting language and extremely lightweight and designed for easy integration into existing applications.&lt;/p&gt;
+
+&lt;p&gt;Because it has so few functions out of the box, you can learn it within a couple of hours and if you are only using it for the purpose of passing some key value stores to redis via the command line, all you need to do is to master some of the basic conditionals of lua.&lt;/p&gt;
+
+&lt;p&gt;This allows you to create all the redis commands you need to perform in a lua script and have the redis-cli evaluate the file for you.&lt;/p&gt;
+
+&lt;p&gt;So you can have a simple lua script like:&lt;/p&gt;
+
+&lt;p&gt;&lt;u&gt;script.lua&lt;/u&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-lua&quot; data-lang=&quot;lua&quot;&gt;&lt;span class=&quot;kd&quot;&gt;local&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;some_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;KEYS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;redis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'setnx'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'counter'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;some_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
+	
+	&lt;span class=&quot;n&quot;&gt;redis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'HSET'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'member'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'some_field'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'some_value'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;and then run your command like so&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;redis-cli -eval /path/to/script.lua&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;In a more real world situation, you are mostly like to use a command before piping to redis-cli like this.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;cat file | redis-cli -eval /path/to/script.lua &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;awk &lt;span class=&quot;s1&quot;&gt;'{print $2}'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;With a simple lua script, you can avoid using an additional layer of abstraction to interact with redis - a fast key value storage system.&lt;/p&gt;
+
+</description>
+<pubDate>Thu, 27 Feb 2014 00:00:00 +0800</pubDate>
+<link>http://localhost:4000/web/2014/02/27/using-eval-with-redis-cli-and-lua.html</link>
+<guid isPermaLink="true">http://localhost:4000/web/2014/02/27/using-eval-with-redis-cli-and-lua.html</guid>
+</item>
+
+<item>
+<title>Optimizing Case sensitive unique key query without using utf8_bin-collation</title>
+<description>&lt;p&gt;Most users of mysql would likely to have the collation of their database set to &lt;span class=&quot;impt&quot;&gt;utf8_general_ci&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;Say you have a need to have a table of items with ‘name’ as a unique key and want a name like “Guns N’ Roses” to be different from “Guns n’ Roses”&lt;/p&gt;
+
+&lt;p&gt;Right away you would do something like:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bands&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;COLUMN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;varchar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;COLLATE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;utf8_bin&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bands&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ADD&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;UNIQUE&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Alternatively, you can do a one way hash for ‘name’ field with md5 and store it as ‘name_hash’.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;**Note you still need to set it as a unique key but because md5 strings are all in 32 digit hexadecimal number, you don’t have to collate your hash column differently from the rest of your table.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This is similar to how &lt;span class=&quot;impt&quot;&gt;utf8_bin compares characters in binary format&lt;/span&gt;. This means that characters like “å” will not be treated like “a”.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;In doing so, you can simply do a search&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Romeo &amp;amp; Juliet'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$name_hash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;md5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$sql&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;SELECT * FROM bands WHERE name_hash = &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;md5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now, you may think, why use a hash when you can let mysql do all the heavy lifting? The benefit comes when there are times you have &lt;strong&gt;multiple unique keys&lt;/strong&gt; and have no real use for the unique keys except to check if the row exist.&lt;/p&gt;
+
+&lt;p&gt;You can combine all the unique fields into one &lt;span class=&quot;impt&quot;&gt;single hash column&lt;/span&gt; where you can query like so.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$sql&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;SELECT id FROM bands WHERE hash = &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;md5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$field_1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; , &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$field_2&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; , &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$field_3&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; , &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$field_4&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This saves mysql from checking multiple columns for matches simply to fulfill a check exist query.&lt;/p&gt;
+
+</description>
+<pubDate>Wed, 01 Jan 2014 00:00:00 +0800</pubDate>
+<link>http://localhost:4000/web/2014/01/01/optimizing-case-sensitive-unique-key-query-without-using-utf8_cs-collation.html</link>
+<guid isPermaLink="true">http://localhost:4000/web/2014/01/01/optimizing-case-sensitive-unique-key-query-without-using-utf8_cs-collation.html</guid>
+</item>
+
+<item>
+<title>How to install luarocks (Unix)</title>
+<description>&lt;p&gt;LuaRocks, a deployment and management system for Lua modules. Like homebrew for mac users, luarocks has a repository that makes the installation of lua modules a breeze.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;wget http://luarocks.org/releases/luarocks-2.1.2.tar.gz
+
+tar -zxvf luarocks-2.1.2.tar.gz
+
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;luarocks-2.1.2&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Depending on your setup, you may need to specify the lua location. The default is /usr&lt;/p&gt;
+
+&lt;p&gt;For my setup, I have installed the lua at /usr/local/bin/lua&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;./configure --with-lua&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/bin
+
+make
+
+sudo make install&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The full list of available configurations is &lt;a href=&quot;http://luarocks.org/en/Installation_instructions_for_Unix&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once install you can install your modules like so&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;luarocks install luafilesystem&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+</description>
+<pubDate>Thu, 28 Nov 2013 00:00:00 +0800</pubDate>
+<link>http://localhost:4000/web/2013/11/28/how-to-install-luarocks-on-ubuntu.html</link>
+<guid isPermaLink="true">http://localhost:4000/web/2013/11/28/how-to-install-luarocks-on-ubuntu.html</guid>
+</item>
+
+<item>
+<title>Package management command cheat sheet for Redhat Linux</title>
+<description>&lt;p&gt;Here is my list of mostly frequently used &lt;strong&gt;yum&lt;/strong&gt; commmnds that will help you handle most if not all of the package management &lt;u&gt;you will ever need&lt;/u&gt;.&lt;/p&gt;
+
+&lt;p&gt;##Updating repositories&lt;/p&gt;
+
+&lt;p&gt;If you are using &lt;strong&gt;Fedora&lt;/strong&gt;, then you usually have the latest repository without doing much.&lt;/p&gt;
+
+&lt;p&gt;If you are using &lt;strong&gt;CentOS&lt;/strong&gt; or &lt;strong&gt;RHEL&lt;/strong&gt;, then you best bet is to get the repo from &lt;a href=&quot;https://webtatic.com/projects/yum-repository/&quot;&gt;webtatic&lt;/a&gt;.
+The installation of the repo is simply “rpm -Uvh” followed by the repo url.&lt;/p&gt;
+
+&lt;h3 id=&quot;yum&quot;&gt;YUM&lt;/h3&gt;
+
+&lt;p&gt;Searching for package&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# search package name &amp;amp; description by term
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;yum search tomcat
+
+&lt;span class=&quot;c&quot;&gt;# search package name that start with term
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;yum list tomcat
+tomcat7-common
+tomcat7
+tomcat7-admin
+tomcat7-examples
+tomcat7-docs
+tomcat7-user
+
+&lt;span class=&quot;c&quot;&gt;# list all installed packages in system 
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;yum list installed&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Upgrading packages&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# upgrade packages (safe)
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;yum update
+
+&lt;span class=&quot;c&quot;&gt;# upgrade packages and remove existing obsolete packages
+&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# which you may be using
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;yum upgrade&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Installing packages&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# install specific package
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;yum install tomcat7
+
+&lt;span class=&quot;c&quot;&gt;# remove wildcard package
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;yum install &lt;span class=&quot;s1&quot;&gt;'tomcat7*'&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# install package group
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;yum groupinstall &lt;span class=&quot;s1&quot;&gt;'Development Tools'&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Removing packages&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# install specific package
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;yum erase tomcat7
+
+&lt;span class=&quot;c&quot;&gt;# remove wildcard package
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;yum erase &lt;span class=&quot;s1&quot;&gt;'tomcat7*'&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Checking for broken packages/ dependencies&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# update package cache and check for broken dependencies
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;yum check
+
+&lt;span class=&quot;c&quot;&gt;# check for packages to update
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;yum check-update
+
+&lt;span class=&quot;c&quot;&gt;# reinstall package and dependencies
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;yum reinstall&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Cleaning up archive files&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# delete all cached data
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;yum clean&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+</description>
+<pubDate>Wed, 20 Nov 2013 00:00:00 +0800</pubDate>
+<link>http://localhost:4000/web/2013/11/20/package-management-command-cheat-sheet-for-redhat-linux.html</link>
+<guid isPermaLink="true">http://localhost:4000/web/2013/11/20/package-management-command-cheat-sheet-for-redhat-linux.html</guid>
+</item>
+
+<item>
+<title>Package management command cheat sheet for Debian Linux</title>
+<description>&lt;p&gt;Here is my list of mostly frequently used &lt;strong&gt;apt-cache&lt;/strong&gt; and &lt;strong&gt;apt-get&lt;/strong&gt; commmands that will help you handle most if not all of the package management &lt;u&gt;you will ever need&lt;/u&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;apt-cache&quot;&gt;APT-CACHE&lt;/h3&gt;
+
+&lt;p&gt;Searching for package&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# search package name &amp;amp; description by term
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;apt-cache search tomcat7
+libtomcat7-java - Servlet and JSP engine -- core libraries
+tomcat7 - Servlet and JSP engine
+tomcat7-admin - Servlet and JSP engine -- admin web applications
+tomcat7-common - Servlet and JSP engine -- common files
+tomcat7-docs - Servlet and JSP engine -- documentation
+tomcat7-examples - Servlet and JSP engine -- example web applications
+tomcat7-user - Servlet and JSP engine -- tools to create user instances
+
+&lt;span class=&quot;c&quot;&gt;# search package name that start with term
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;apt-cache pkgnames tomcat7
+tomcat7-common
+tomcat7
+tomcat7-admin
+tomcat7-examples
+tomcat7-docs
+tomcat7-user&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;apt-get&quot;&gt;APT-GET&lt;/h3&gt;
+
+&lt;p&gt;Updating package source list&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get update&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Upgrading packages&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# upgrade packages (safe)
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get upgrade
+
+&lt;span class=&quot;c&quot;&gt;# upgrade may add or remove existing packages
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get dist-upgrade&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Installing packages&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# install specific package
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get install tomcat7
+
+&lt;span class=&quot;c&quot;&gt;# remove wildcard package
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get install &lt;span class=&quot;s1&quot;&gt;'tomcat7*'&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Removing packages&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# install specific package
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get remove tomcat7
+
+&lt;span class=&quot;c&quot;&gt;# remove wildcard package
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get remove &lt;span class=&quot;s1&quot;&gt;'tomcat7*'&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# remove package &amp;amp; config files
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get purge tomcat7&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Checking for broken packages/ dependencies&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# update package cache and check for broken dependencies
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get check
+
+&lt;span class=&quot;c&quot;&gt;# install dependencies for package
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get build-dep&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Cleaning up archive files&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# delete all stored archived .deb files
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get clean
+
+&lt;span class=&quot;c&quot;&gt;# only delete .deb files that can no longer be downloaded
+&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get autoclean&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+</description>
+<pubDate>Wed, 20 Nov 2013 00:00:00 +0800</pubDate>
+<link>http://localhost:4000/web/2013/11/20/package-management-command-cheat-sheet-for-debian-linux.html</link>
+<guid isPermaLink="true">http://localhost:4000/web/2013/11/20/package-management-command-cheat-sheet-for-debian-linux.html</guid>
+</item>
+
+<item>
+<title>Difference between redis EVAL command and redis-cli --eval</title>
+<description>&lt;p&gt;There are a number of tutorials that focus on the redis eval command (which is the interactive mode).&lt;/p&gt;
+
+&lt;p&gt;Most of it demostrates with using the cli like so&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;redis-cli
+
+EVAL &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;cat update_members.lua&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; 2 members:counter members:email username@example.com&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;where the &lt;u&gt;update_members.lua&lt;/u&gt; is something like:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-lua&quot; data-lang=&quot;lua&quot;&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;KEYS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;member_emails&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;KEYS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;email&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ARGV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;local&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;redis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;INCR&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;redis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;HSET&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member_emails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member_id&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;While this is not wrong, most of you might be confuse this with the –eval option available on redis-cli which is awfully similar. You might end up wondering why your KEYS[1] and ARG[1] are gumbled up and the error messages are not making any sense.&lt;/p&gt;
+
+&lt;p&gt;If you type redis-cli –help, you get the &lt;strong&gt;typical bullshit documentation&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;It doesn’t offer any explanation why your arguments are not working, the way it should (or least the way you expected it to be like the EVAL command in interactive mode).&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;redis-cli --help
+
+Usage: redis-cli &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;OPTIONS] &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;cmd &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;arg &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;arg ...]]]
+--eval &amp;lt;file&amp;gt;     Send an EVAL &lt;span class=&quot;nb&quot;&gt;command &lt;/span&gt;using the Lua script at &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If you are using the command line format — &lt;strong&gt;redis-cli –eval&lt;/strong&gt;, there is no ARGV variable in the file.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;You only have &lt;strong&gt;KEYS&lt;/strong&gt;, and can assess them like KEYS[1], KEYS[2], etc and &lt;span class=&quot;impt&quot;&gt;you don’t have to specify the number of arguments&lt;/span&gt; like you do in the EVAL command.&lt;/p&gt;
+
+&lt;p&gt;And so you only need to do something like:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;redis-cli -eval /path/to/script.lua key1 key2 key3&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;And there you go, you can do call your redis operations using redis.call() and go ahead to script in lua.&lt;/p&gt;
+
+&lt;p&gt;Personally, I find that more use for the redis-cli –eval because I use to pipe variables from other input to redis-cli.&lt;/p&gt;
+
+</description>
+<pubDate>Thu, 14 Nov 2013 00:00:00 +0800</pubDate>
+<link>http://localhost:4000/web/2013/11/14/difference-between-redis-eval-command-and-redis-cli-eval.html</link>
+<guid isPermaLink="true">http://localhost:4000/web/2013/11/14/difference-between-redis-eval-command-and-redis-cli-eval.html</guid>
+</item>
+
+<item>
+<title>What is your use for Redis?</title>
+<description>&lt;p&gt;Personally, I use redis for storing/ caching simple stats like google analytics, caching mysql queries and counter stats for applications.&lt;/p&gt;
+
+&lt;p&gt;I think the main use for redis is strictly to caching at abstract query level. If you are planning to store records, I think using solr will a more suitable option.&lt;/p&gt;
+
+&lt;p&gt;Stackoverflow also primary uses redis for &lt;a href=&quot;http://meta.stackexchange.com/questions/69164/does-stack-overflow-use-caching-and-if-so-how/69172#69172&quot;&gt;caching&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+<pubDate>Thu, 23 May 2013 00:00:00 +0800</pubDate>
+<link>http://localhost:4000/web/2013/05/23/what-is-your-use-for-redis.html</link>
+<guid isPermaLink="true">http://localhost:4000/web/2013/05/23/what-is-your-use-for-redis.html</guid>
+</item>
+
 </channel>
 </rss>

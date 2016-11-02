@@ -10,21 +10,21 @@
 
         <title>
             
-            Difference between redis EVAL command and redis-cli --eval &middot; Ryan Yang
+            Choose Grunt, GulpJS or NPM? &middot; Ryan Yang
             
         </title>
 
         <!-- SEO -->
-        <meta property="og:title" content="Difference between redis EVAL command and redis-cli --eval" />
+        <meta property="og:title" content="Choose Grunt, GulpJS or NPM?" />
         <meta name="description" content=""/>
         <meta property="og:description" content="" />
 
         
         <meta name="author" content="Ryan Yang" />
-        <link rel="canonical" href="/web/2013/11/14/difference-between-redis-eval-command-and-redis-cli-eval.html" />
+        <link rel="canonical" href="/web/2016/11/03/choose-grunt-gulp-or-npm.html" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content="/web/2013/11/14/difference-between-redis-eval-command-and-redis-cli-eval.html" />
+        <meta property="og:url" content="/web/2016/11/03/choose-grunt-gulp-or-npm.html" />
         <meta property="og:site_name" content="Ryan Yang" />
         <meta property="article:publisher" content="https://www.facebook.com/RyanYJL" />
         <meta property="article:section" content="Article" />
@@ -132,67 +132,107 @@
     <div class="breadcrumbs">
         <a href="/">Home</a> &raquo; 
         <a href="http://localhost:4000/category/web">Web</a> &raquo; 
-        <a href="/web/2013/11/14/difference-between-redis-eval-command-and-redis-cli-eval.html">Difference between redis EVAL command and redis-cli --eval</a>
+        <a href="/web/2016/11/03/choose-grunt-gulp-or-npm.html">Choose Grunt, GulpJS or NPM?</a>
     </div>
     <div class="post">
-      <h1 class="post-title">Difference between redis EVAL command and redis-cli --eval</h1>
-      <div class="post-date">November 14, 2013</div>
+      <h1 class="post-title">Choose Grunt, GulpJS or NPM?</h1>
+      <div class="post-date">November 3, 2016</div>
       <!-- Go to www.addthis.com/dashboard to customize your tools -->
 
-      <!--<div class="post-date post-details">Published November 14, 2013 by <a href="http://localhost:4000/about/">Ryan Yang</a></div>-->
-      <p>There are a number of tutorials that focus on the redis eval command (which is the interactive mode).</p>
+      <!--<div class="post-date post-details">Published November 3, 2016 by <a href="http://localhost:4000/about/">Ryan Yang</a></div>-->
+      <p>Grunt, Gulp, and npm are the three build tools most frequently used in front-end development workflows. What are the differences? Which should I use to start? In this article, I will briefly summarize the areas where each tool excels in and give you a glimpse of how you can easily utilize these tools to automate your workflows or even adopt best practices (if you haven’t already do so).</p>
 
-<p>Most of it demostrates with using the cli like so</p>
+<h3 id="grunt--configuration-over-coding">Grunt : Configuration over coding</h3>
+<p>Favoring task configuration over implementation make the process of re-read and fix old scripts more easy, Grunt implements the concatenation and minification process for you, it’s smart enough to care of the rest, you only  need to specify input and output files. Grunt configurations (JSON objects) are easy to understand when they are small, but as they grow, it is a bit more difficult to read and understand  huge configurations.
+Grunt looks for its configuration under a property with the same name. Multi-tasking can have multi configurations, defined using arbitrarily named “targets.” In the example below, the concat task has “foo” and “bar” targets, while the uglify task only has a “bar” target.</p>
 
-<figure class="highlight"><pre><code class="language-sh" data-lang="sh">redis-cli
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+  <span class="na">concat</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">foo</span><span class="p">:</span> <span class="p">{</span>
+      <span class="c1">// concat task "foo" target options and files go here.</span>
+    <span class="p">},</span>
+    <span class="na">bar</span><span class="p">:</span> <span class="p">{</span>
+      <span class="c1">// concat task "bar" target options and files go here.</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="na">uglify</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">bar</span><span class="p">:</span> <span class="p">{</span>
+      <span class="c1">// uglify task "bar" target options and files go here.</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+</code></pre>
+</div>
 
-EVAL <span class="s2">"</span><span class="k">$(</span>cat update_members.lua<span class="k">)</span><span class="s2">"</span> 2 members:counter members:email username@example.com</code></pre></figure>
+<h3 id="gulp--code-driven-build-tool">Gulp : Code-driven build tool</h3>
+<p>Gulp uses streams instead of temporary files/folders, it makes IO more faster. Gulp places a little more emphasis on code over configuration with the use of pipes and streams. Gulp tasks are also very readable and easy to debug since you can set breakpoints in it, compared to no debugging in the configuration aspects of Grunt.</p>
 
-<p>where the <u>update_members.lua</u> is something like:</p>
+<p>As an example, we will pipe through gulp-size , which calculate the size of the library that are in the buffer, and print that to the terminal. Note that if you add it before Uglify then you’d get the unminified size :</p>
 
-<figure class="highlight"><pre><code class="language-lua" data-lang="lua"><span class="n">counter</span> <span class="o">=</span> <span class="n">KEYS</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">member_emails</span> <span class="o">=</span> <span class="n">KEYS</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">email</span> <span class="o">=</span> <span class="n">ARGV</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">uglify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp-uglify'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">size</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp-size'</span><span class="p">);</span>
 
-<span class="kd">local</span> <span class="n">member_id</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s2">"INCR"</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span>
-<span class="n">redis</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="s2">"HSET"</span><span class="p">,</span> <span class="n">member_emails</span><span class="p">,</span> <span class="n">member_id</span><span class="p">,</span> <span class="n">email</span><span class="p">)</span>
-<span class="k">return</span> <span class="n">member_id</span></code></pre></figure>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'build'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">gulp</span>
+    <span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'./myscript.js'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">uglify</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">size</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'./build'</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre>
+</div>
 
-<p>While this is not wrong, most of you might be confuse this with the –eval option available on redis-cli which is awfully similar. You might end up wondering why your KEYS[1] and ARG[1] are gumbled up and the error messages are not making any sense.</p>
+<h3 id="npm-as-a-build-tool">NPM as a build tool</h3>
+<p>In order to use npm  as a task runner, we add the required properties to our packages.json, the name of the property will be the task name. Using npm has several obvious advantages as it hosts tens of thousands of packages and also allows for the use of the command line. An added bonus is that it also removes complexity from your project since you don’t need any other specific APIs of another tool or the inherent dependencies of the tools that you are using.</p>
 
-<p>If you type redis-cli –help, you get the <strong>typical bullshit documentation</strong>.</p>
+<p>As an example, in the following package file, we will just copy a directory in our JavaScript build flow and compile an Stylus stylesheet during our CSS build flow. In this case, we’re using a single “&amp;” to run the tasks asynchronously.</p>
 
-<p>It doesn’t offer any explanation why your arguments are not working, the way it should (or least the way you expected it to be like the EVAL command in interactive mode).</p>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+  <span class="s2">"scripts"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"build-js"</span><span class="err">:</span> <span class="s2">"cp -r src/js/ dist/js"</span><span class="p">,</span>
+    <span class="s2">"build-css"</span><span class="err">:</span> <span class="s2">"stylus src/css/all.styl -o dist/css"</span><span class="p">,</span>
+    <span class="s2">"build"</span><span class="err">:</span> <span class="s2">"npm run build-js &amp; npm run build-css"</span>
+  <span class="p">},</span>
+  <span class="s2">"devDependencies"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"stylus"</span><span class="err">:</span> <span class="s2">"latest"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
-<figure class="highlight"><pre><code class="language-sh" data-lang="sh">redis-cli --help
+<h3 id="wrap-up">Wrap Up</h3>
+<p>I hope you’ve been able to learn a few things about using Grunt, Gulp, and npm as a build process in general. During rapid prototyping, automation tools might be a step that you wouldn’t consider, but once you begin to juggle multiple projects, maintenance becomes a chore and soon you find yourself appreciating these build tools which can help you quickly optimize your assets for quicker deployments and updates.</p>
 
-Usage: redis-cli <span class="o">[</span>OPTIONS] <span class="o">[</span>cmd <span class="o">[</span>arg <span class="o">[</span>arg ...]]]
---eval &lt;file&gt;     Send an EVAL <span class="nb">command </span>using the Lua script at &lt;file&gt;</code></pre></figure>
+<!-- {
+  "devDependencies": {
+    "jshint": "latest",
+    "uglify": "latest",
+    "stylus": "latest",
+    "cssmin": "latest"
+  },
+  "scripts": {
+    "scss": "node-sass --output-style compressed -o dist/css src/scss"
+    "lint": "lint src/js/*",
+    "uglify": "uglifyjs src/js/*.js -m -o dist/js/app.js"
+    "build:css": "npm run scss && npm run autoprefixer",
+    "build:js": "npm run lint && npm run uglify",
+    "build": "npm run build:css && npm run build:js"
+    "serve": "browser-sync start --server --files 'dist/css/*.css, dist/js/*.js'"
+  }
+} -->
 
-<blockquote>
-  <p>If you are using the command line format — <strong>redis-cli –eval</strong>, there is no ARGV variable in the file.</p>
-</blockquote>
 
-<p>You only have <strong>KEYS</strong>, and can assess them like KEYS[1], KEYS[2], etc and <span class="impt">you don’t have to specify the number of arguments</span> like you do in the EVAL command.</p>
-
-<p>And so you only need to do something like:</p>
-
-<figure class="highlight"><pre><code class="language-sh" data-lang="sh">redis-cli -eval /path/to/script.lua key1 key2 key3</code></pre></figure>
-
-<p>And there you go, you can do call your redis operations using redis.call() and go ahead to script in lua.</p>
-
-<p>Personally, I find that more use for the redis-cli –eval because I use to pipe variables from other input to redis-cli.</p>
-
-
-
-      <div class="post-date">( Last modified 26 July 2014, 4:27 PM )</div>
+      <div class="post-date">( Last modified 3 November 2016, 3:23 AM )</div>
     
         
         <ul class="tags clearfix">
           
-            <li><a href="http://localhost:4000/tag/lua">lua</a> </li>
+            <li><a href="http://localhost:4000/tag/nodejs">nodejs</a> </li>
           
-            <li><a href="http://localhost:4000/tag/redis">redis</a> </li>
+            <li><a href="http://localhost:4000/tag/npm">npm</a> </li>
+          
+            <li><a href="http://localhost:4000/tag/javascript">javascript</a> </li>
           
         </ul>
         
@@ -221,16 +261,6 @@ Usage: redis-cli <span class="o">[</span>OPTIONS] <span class="o">[</span>cmd <s
         
           <li>
               <div class="archive-item">
-                <span class="post-date archive-date">November 3, 2016</span>
-                <a href="/web/2016/11/03/choose-grunt-gulp-or-npm.html" class="archive-title">
-                  Choose Grunt, GulpJS or NPM?
-                </a>
-            </div>
-
-          </li>
-        
-          <li>
-              <div class="archive-item">
                 <span class="post-date archive-date">April 3, 2014</span>
                 <a href="/web/2014/04/03/using-subversion-gui-synx-to-publish-your-wordpress-plugin.html" class="archive-title">
                   Using subversion (GUI) SVNx to publish your WordPress plugin
@@ -244,6 +274,16 @@ Usage: redis-cli <span class="o">[</span>OPTIONS] <span class="o">[</span>cmd <s
                 <span class="post-date archive-date">April 3, 2014</span>
                 <a href="/web/2014/04/03/using-subversion-ci-to-publish-your-wordpress-plugin.html" class="archive-title">
                   Using subversion (Command Line) to publish your WordPress plugin
+                </a>
+            </div>
+
+          </li>
+        
+          <li>
+              <div class="archive-item">
+                <span class="post-date archive-date">February 27, 2014</span>
+                <a href="/web/2014/02/27/using-eval-with-redis-cli-and-lua.html" class="archive-title">
+                  Using eval with redis-cli and lua
                 </a>
             </div>
 

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+
+	<?xml version="1.0" encoding="UTF-8" ?>
 
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
@@ -10,10 +11,200 @@
    <language>en-us</language>
    <managingEditor>Ryan Yang J.L.</managingEditor>
    <atom:link href="rss" rel="self" type="application/rss+xml" />
+   <div class="container content">
+    <div class="breadcrumbs">
+        <a href="http://localhost:4000">Home</a> &raquo; 
+        <a href="http://localhost:4000/tags/">Tags</a>
+    </div>
+    <h1 class="page-title non-impt"><a href="http://localhost:4000/tags/">Tags</a></h1>
+    <div class="tag-archive clearfix">
+        
+        
+        
+        
+        
+        <a href="http://localhost:4000/tag/debian" class="tag-link" id="debian" data-size="1">
+            debian<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/fedora" class="tag-link" id="fedora" data-size="1">
+            fedora<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/javascript" class="tag-link" id="javascript" data-size="1">
+            javascript<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/linux" class="tag-link" id="linux" data-size="1">
+            linux<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/lua" class="tag-link" id="lua" data-size="3">
+            lua<div class="tag-link-count">3</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/mysql" class="tag-link" id="mysql" data-size="2">
+            mysql<div class="tag-link-count">2</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/nodejs" class="tag-link" id="nodejs" data-size="1">
+            nodejs<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/npm" class="tag-link" id="npm" data-size="1">
+            npm<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/redhat" class="tag-link" id="redhat" data-size="1">
+            redhat<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/redis" class="tag-link" id="redis" data-size="3">
+            redis<div class="tag-link-count">3</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/ubuntu" class="tag-link" id="ubuntu" data-size="2">
+            ubuntu<div class="tag-link-count">2</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/unix" class="tag-link" id="unix" data-size="1">
+            unix<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/wordpress" class="tag-link" id="wordpress" data-size="2">
+            wordpress<div class="tag-link-count">2</div>
+        </a>
+        
+    </div>
+</div>
+</channel>
+</rss>
+
+	<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
    
-	Included file atom_post.xml not found in _includes directory
-
-	Included file atom_post.xml not found in _includes directory
-
+   	<title>Ryan Yang - Tagged "wordpress"</title>
+   
+   <link>http://ryan-yjl.com</link>
+   <description>Ryan Yang</description>
+   <language>en-us</language>
+   <managingEditor>Ryan Yang J.L.</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   <div class="container content">
+    <div class="breadcrumbs">
+        <a href="http://localhost:4000">Home</a> &raquo; 
+        <a href="http://localhost:4000/tags/">Tags</a>
+    </div>
+    <h1 class="page-title non-impt"><a href="http://localhost:4000/tags/">Tags</a></h1>
+    <div class="tag-archive clearfix">
+        
+        
+        
+        
+        
+        <a href="http://localhost:4000/tag/debian" class="tag-link" id="debian" data-size="1">
+            debian<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/fedora" class="tag-link" id="fedora" data-size="1">
+            fedora<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/javascript" class="tag-link" id="javascript" data-size="1">
+            javascript<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/linux" class="tag-link" id="linux" data-size="1">
+            linux<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/lua" class="tag-link" id="lua" data-size="3">
+            lua<div class="tag-link-count">3</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/mysql" class="tag-link" id="mysql" data-size="2">
+            mysql<div class="tag-link-count">2</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/nodejs" class="tag-link" id="nodejs" data-size="1">
+            nodejs<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/npm" class="tag-link" id="npm" data-size="1">
+            npm<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/redhat" class="tag-link" id="redhat" data-size="1">
+            redhat<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/redis" class="tag-link" id="redis" data-size="3">
+            redis<div class="tag-link-count">3</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/ubuntu" class="tag-link" id="ubuntu" data-size="2">
+            ubuntu<div class="tag-link-count">2</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/unix" class="tag-link" id="unix" data-size="1">
+            unix<div class="tag-link-count">1</div>
+        </a>
+        
+        
+        
+        <a href="http://localhost:4000/tag/wordpress" class="tag-link" id="wordpress" data-size="2">
+            wordpress<div class="tag-link-count">2</div>
+        </a>
+        
+    </div>
+</div>
 </channel>
 </rss>

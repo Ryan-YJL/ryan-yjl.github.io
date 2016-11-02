@@ -8,9 +8,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
         
-             
-             
-        
         <title>Posts tagged "debian" &middot; Ryan Yang</title>
         <!-- SEO -->
         <meta property="og:title" content="Posts tagged "debian" &middot; Ryan Yang" />
@@ -19,14 +16,14 @@
         
         
         <meta name="author" content="Ryan Yang" />
-        <link rel="canonical" href="/tag/debian/index.html" />
+        <link rel="canonical" href="/tag/debian/" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content="/tag/debian/index.html" />
+        <meta property="og:url" content="/tag/debian/" />
         <meta property="og:site_name" content="Ryan Yang" />
         <meta property="article:publisher" content="https://www.facebook.com/RyanYJL" />
         <meta property="article:section" content="Article" />
-        <meta property="og:image" content="/assets/img/logo.png" />
+        <meta property="og:image" content="http://localhost:4000/assets/img/logo.png" />
         <meta property="og:image:width" content="300" />
         <meta property="og:image:height" content="300" />
         <meta name="twitter:card" content="summary"/>
@@ -49,7 +46,7 @@
         <link rel="shortcut icon" href="/assets/favicon.ico">
 
         <!-- RSS -->
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="http://localhost:4000/atom.xml">
         <script>
             if (navigator.userAgent.indexOf('Mac OS X') == -1) {
                 $('head').append('<link rel="stylesheet" href="/assets/css/non-mac.css" type="text/css" />');
@@ -78,12 +75,12 @@
                 <div class="menu clearfix">
                     
                     
-                    <!--<div><a class="" href="/category/everything/">Everything</a></div>-->
-                    <div><a class="active" href="/category/web/">Web</a></div>
-                    <div><a class="" href="/play/">Play</a></div>
-                    <div><a class="" href="/portfolio/">Portfolio</a></div>
-                    <div><a class="" href="/pinboard/">Pinboard</a></div>
-                    <div><a class="" href="/archive/">Archive</a></div>
+                    <!--<div><a class="" href="http://localhost:4000/category/everything/">Everything</a></div>-->
+                    <div><a class="active" href="http://localhost:4000/category/web/">Web</a></div>
+                    <div><a class="" href="http://localhost:4000/play/">Play</a></div>
+                    <div><a class="" href="http://localhost:4000/portfolio/">Portfolio</a></div>
+                    <div><a class="" href="http://localhost:4000/pinboard/">Pinboard</a></div>
+                    <div><a class="" href="http://localhost:4000/archive/">Archive</a></div>
                     <div class="social">
 <!--                        
                         <a class="social-icon" href=""><span class="fa fa-tumblr"></span></a>
@@ -115,7 +112,7 @@
                         }
                         //-->
                         </script>
-                        <a class="social-icon" href="/atom.xml"><span class="fa fa-rss"></span></a>
+                        <a class="social-icon" href="http://localhost:4000/atom.xml"><span class="fa fa-rss"></span></a>
                     </div>
                 </div>
             </div>  
@@ -127,8 +124,8 @@
         
         <div class="breadcrumbs">
             <a href="/">Home</a> &raquo; 
-            <a href="/tags/">Tags</a> &raquo;
-            <a href="/tag/debian/">Debian</a>
+            <a href="http://localhost:4000/tags/">Tags</a> &raquo;
+            <a href="http://localhost:4000/tag/debian/">Debian</a>
         </div>
         <h1 class="page-title non-impt">Tagged 'Debian'</h1>
     
@@ -145,12 +142,13 @@
                 <div class="post-date">November 20, 2013</div>
               <p>Here is my list of mostly frequently used <strong>apt-cache</strong> and <strong>apt-get</strong> commmands that will help you handle most if not all of the package management <u>you will ever need</u>.</p>
 
-<h3>APT-CACHE</h3>
+<h3 id="apt-cache">APT-CACHE</h3>
 
 <p>Searching for package</p>
 
-<div class="highlight"><pre><code class="bash"><span class="c"># search package name &amp; description by term</span>
-<span class="nv">$ </span>apt-cache search tomcat7
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># search package name &amp; description by term
+</span>
+<span class="gp">$ </span>apt-cache search tomcat7
 libtomcat7-java - Servlet and JSP engine -- core libraries
 tomcat7 - Servlet and JSP engine
 tomcat7-admin - Servlet and JSP engine -- admin web applications
@@ -159,70 +157,76 @@ tomcat7-docs - Servlet and JSP engine -- documentation
 tomcat7-examples - Servlet and JSP engine -- example web applications
 tomcat7-user - Servlet and JSP engine -- tools to create user instances
 
-<span class="c"># search package name that start with term</span>
-<span class="nv">$ </span>apt-cache pkgnames tomcat7
+<span class="c"># search package name that start with term
+</span>
+<span class="gp">$ </span>apt-cache pkgnames tomcat7
 tomcat7-common
 tomcat7
 tomcat7-admin
 tomcat7-examples
 tomcat7-docs
-tomcat7-user
-</code></pre></div>
+tomcat7-user</code></pre></figure>
 
-<h3>APT-GET</h3>
+<h3 id="apt-get">APT-GET</h3>
 
 <p>Updating package source list</p>
 
-<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>sudo apt-get update
-</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>sudo apt-get update</code></pre></figure>
 
 <p>Upgrading packages</p>
 
-<div class="highlight"><pre><code class="bash"><span class="c"># upgrade packages (safe)</span>
-<span class="nv">$ </span>sudo apt-get upgrade
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># upgrade packages (safe)
+</span>
+<span class="gp">$ </span>sudo apt-get upgrade
 
-<span class="c"># upgrade may add or remove existing packages</span>
-<span class="nv">$ </span>sudo apt-get dist-upgrade
-</code></pre></div>
+<span class="c"># upgrade may add or remove existing packages
+</span>
+<span class="gp">$ </span>sudo apt-get dist-upgrade</code></pre></figure>
 
 <p>Installing packages</p>
 
-<div class="highlight"><pre><code class="bash"><span class="c"># install specific package</span>
-<span class="nv">$ </span>sudo apt-get install tomcat7
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># install specific package
+</span>
+<span class="gp">$ </span>sudo apt-get install tomcat7
 
-<span class="c"># remove wildcard package</span>
-<span class="nv">$ </span>sudo apt-get install <span class="s1">&#39;tomcat7*&#39;</span>
-</code></pre></div>
+<span class="c"># remove wildcard package
+</span>
+<span class="gp">$ </span>sudo apt-get install <span class="s1">'tomcat7*'</span></code></pre></figure>
 
 <p>Removing packages</p>
 
-<div class="highlight"><pre><code class="bash"><span class="c"># install specific package</span>
-<span class="nv">$ </span>sudo apt-get remove tomcat7
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># install specific package
+</span>
+<span class="gp">$ </span>sudo apt-get remove tomcat7
 
-<span class="c"># remove wildcard package</span>
-<span class="nv">$ </span>sudo apt-get remove <span class="s1">&#39;tomcat7*&#39;</span>
+<span class="c"># remove wildcard package
+</span>
+<span class="gp">$ </span>sudo apt-get remove <span class="s1">'tomcat7*'</span>
 
-<span class="c"># remove package &amp; config files</span>
-<span class="nv">$ </span>sudo apt-get purge tomcat7
-</code></pre></div>
+<span class="c"># remove package &amp; config files
+</span>
+<span class="gp">$ </span>sudo apt-get purge tomcat7</code></pre></figure>
 
 <p>Checking for broken packages/ dependencies</p>
 
-<div class="highlight"><pre><code class="bash"><span class="c"># update package cache and check for broken dependencies</span>
-<span class="nv">$ </span>sudo apt-get check
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># update package cache and check for broken dependencies
+</span>
+<span class="gp">$ </span>sudo apt-get check
 
-<span class="c"># install dependencies for package</span>
-<span class="nv">$ </span>sudo apt-get build-dep
-</code></pre></div>
+<span class="c"># install dependencies for package
+</span>
+<span class="gp">$ </span>sudo apt-get build-dep</code></pre></figure>
 
 <p>Cleaning up archive files</p>
 
-<div class="highlight"><pre><code class="bash"><span class="c"># delete all stored archived .deb files</span>
-<span class="nv">$ </span>sudo apt-get clean
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># delete all stored archived .deb files
+</span>
+<span class="gp">$ </span>sudo apt-get clean
 
-<span class="c"># only delete .deb files that can no longer be downloaded</span>
-<span class="nv">$ </span>sudo apt-get autoclean
-</code></pre></div>
+<span class="c"># only delete .deb files that can no longer be downloaded
+</span>
+<span class="gp">$ </span>sudo apt-get autoclean</code></pre></figure>
+
 
               <div class="post-readmore">
                   <a href="/web/2013/11/20/package-management-command-cheat-sheet-for-debian-linux.html" class="more-link">Read More &rarr;</a>
@@ -233,8 +237,6 @@ tomcat7-user
         </div>
     
 
-    
-        
     
 
         <div class="pagination">
@@ -253,11 +255,11 @@ tomcat7-user
 
     <div class="footer">
     <div class="container">
-        <p class="copyright">&copy; 2014. Ryan-YJL. Powered by <a href="http://jekyllrb.com/">Jekyll</a>. Hosted by <a href="https://github.com">GitHub</a>.
+        <p class="copyright">&copy; 2016. Ryan-YJL. Powered by <a href="http://jekyllrb.com/">Jekyll</a>. Hosted by <a href="https://github.com">GitHub</a>.
         <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." style="float: right;"><img alt="Creative Commons License" style="margin-top: 1px; border-width: 0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a> 
     </div>
 </div>
-<script src='/assets/js/scrollReveal.js'></script>
+<script src='http://localhost:4000/assets/js/scrollReveal.js'></script>
 <script>
   window.scrollReveal = new scrollReveal();
 </script>

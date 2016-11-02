@@ -21,14 +21,14 @@
 
         
         <meta name="author" content="Ryan Yang" />
-        <link rel="canonical" href="/page4/index.html" />
+        <link rel="canonical" href="/page4/" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content="/page4/index.html" />
+        <meta property="og:url" content="/page4/" />
         <meta property="og:site_name" content="Ryan Yang" />
         <meta property="article:publisher" content="https://www.facebook.com/RyanYJL" />
         <meta property="article:section" content="Article" />
-        <meta property="og:image" content="/assets/img/logo.png" />
+        <meta property="og:image" content="http://localhost:4000/assets/img/logo.png" />
         <meta property="og:image:width" content="300" />
         <meta property="og:image:height" content="300" />
         <meta name="twitter:card" content="summary"/>
@@ -51,7 +51,7 @@
         <link rel="shortcut icon" href="/assets/favicon.ico">
 
         <!-- RSS -->
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml" />
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="http://localhost:4000/atom.xml" />
         <script>
             if (navigator.userAgent.indexOf('Mac OS X') == -1) {
                 $('head').append('<link rel="stylesheet" href="/assets/css/non-mac.css" type="text/css" />');
@@ -82,12 +82,12 @@
                 <div class="menu clearfix">
                     
                     
-                    <!--<div><a class="" href="/category/everything/">Everything</a></div>-->
-                    <div><a class="active" href="/category/web/">Web</a></div>
-                    <div><a class="" href="/play/">Play</a></div>
-                    <div><a class="" href="/portfolio/">Portfolio</a></div>
-                    <div><a class="" href="/pinboard/">Pinboard</a></div>
-                    <div><a class="" href="/archive/">Archive</a></div>
+                    <!--<div><a class="" href="http://localhost:4000/category/everything/">Everything</a></div>-->
+                    <div><a class="active" href="http://localhost:4000/category/web/">Web</a></div>
+                    <div><a class="" href="http://localhost:4000/play/">Play</a></div>
+                    <div><a class="" href="http://localhost:4000/portfolio/">Portfolio</a></div>
+                    <div><a class="" href="http://localhost:4000/pinboard/">Pinboard</a></div>
+                    <div><a class="" href="http://localhost:4000/archive/">Archive</a></div>
                     <div class="social">
 <!--                        
                         <a class="social-icon" href=""><span class="fa fa-tumblr"></span></a>
@@ -119,7 +119,7 @@
                         }
                         //-->
                         </script>
-                        <a class="social-icon" href="/atom.xml"><span class="fa fa-rss"></span></a>
+                        <a class="social-icon" href="http://localhost:4000/atom.xml"><span class="fa fa-rss"></span></a>
                     </div>
                 </div>
             </div>  
@@ -130,81 +130,102 @@
     
       <div class="with-sidebar container clearfix">
     <div class="sidebar">
-    <h2 class="section-title"><a href="/about/">About</a></h2>
+    <h2 class="section-title"><a href="http://localhost:4000/about/">About</a></h2>
     <div class="location"><i class="fa fa-map-marker"></i> Singapore</div>
     <p>&mdash; mostly about #web #technologies. </p>
     
-    <h2 class="section-title"><a href="/tags/">Tags</a></h2>
+    <h2 class="section-title"><a href="http://localhost:4000/tags/">Tags</a></h2>
     
         
           <ul class="tags clearfix">
             
               
               
-             <li><a href="/tag/debian
+             <li><a href="http://localhost:4000/tag/debian
 /" class="tag-debian
               ">debian
               </a></li>
             
               
               
-             <li><a href="/tag/fedora
+             <li><a href="http://localhost:4000/tag/fedora
 /" class="tag-fedora
               ">fedora
               </a></li>
             
               
               
-             <li><a href="/tag/linux
+             <li><a href="http://localhost:4000/tag/javascript
+/" class="tag-javascript
+              ">javascript
+              </a></li>
+            
+              
+              
+             <li><a href="http://localhost:4000/tag/linux
 /" class="tag-linux
               ">linux
               </a></li>
             
               
               
-             <li><a href="/tag/lua
+             <li><a href="http://localhost:4000/tag/lua
 /" class="tag-lua
               ">lua
               </a></li>
             
               
               
-             <li><a href="/tag/mysql
+             <li><a href="http://localhost:4000/tag/mysql
 /" class="tag-mysql
               ">mysql
               </a></li>
             
               
               
-             <li><a href="/tag/redhat
+             <li><a href="http://localhost:4000/tag/nodejs
+/" class="tag-nodejs
+              ">nodejs
+              </a></li>
+            
+              
+              
+             <li><a href="http://localhost:4000/tag/npm
+/" class="tag-npm
+              ">npm
+              </a></li>
+            
+              
+              
+             <li><a href="http://localhost:4000/tag/redhat
 /" class="tag-redhat
               ">redhat
               </a></li>
             
               
               
-             <li><a href="/tag/redis
+             <li><a href="http://localhost:4000/tag/redis
 /" class="tag-redis
               ">redis
               </a></li>
             
               
               
-             <li><a href="/tag/ubuntu
+             <li><a href="http://localhost:4000/tag/ubuntu
 /" class="tag-ubuntu
               ">ubuntu
               </a></li>
             
               
               
-             <li><a href="/tag/unix
+             <li><a href="http://localhost:4000/tag/unix
 /" class="tag-unix
               ">unix
               </a></li>
             
               
               
-             <li><a href="/tag/wordpress
+             <li><a href="http://localhost:4000/tag/wordpress
 /" class="tag-wordpress
               ">wordpress
               </a></li>
@@ -221,6 +242,27 @@
         
         <div class="post">
           <h2 class="post-title">
+            <a href="/web/2013/05/23/what-is-your-use-for-redis.html">
+              What is your use for Redis?
+            </a>
+          </h2>
+
+          <span class="post-date">23 May 2013</span>
+
+          <p>Personally, I use redis for storing/ caching simple stats like google analytics, caching mysql queries and counter stats for applications.</p>
+
+<p>I think the main use for redis is strictly to caching at abstract query level. If you are planning to store records, I think using solr will a more suitable option.</p>
+
+<p>Stackoverflow also primary uses redis for <a href="http://meta.stackexchange.com/questions/69164/does-stack-overflow-use-caching-and-if-so-how/69172#69172">caching</a>.</p>
+
+
+          <div class="post-readmore">
+              <a href="/web/2013/05/23/what-is-your-use-for-redis.html" class="more-link">Read More &rarr;</a>
+          </div>
+        </div>
+        
+        <div class="post">
+          <h2 class="post-title">
             <a href="/web/2012/12/17/kill-process-master.html">
               Managing processes in unix
             </a>
@@ -228,30 +270,29 @@
 
           <span class="post-date">17 Dec 2012</span>
 
-          <h2>About the PS command</h2>
+          <p>##About the PS command
+The ps (i.e., process status) command is used to provide information about the currently running processes, including their process identification numbers (PIDs). A process, also referred to as a task, is an executing (i.e., running) instance of a program. Every process is assigned a unique PID by the system.</p>
 
-<p>The ps (i.e., process status) command is used to provide information about the currently running processes, including their process identification numbers (PIDs). A process, also referred to as a task, is an executing (i.e., running) instance of a program. Every process is assigned a unique PID by the system.</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">ps aux | grep php</code></pre></figure>
 
-<div class="highlight"><pre><code class="bash">ps aux <span class="p">|</span> grep php
-</code></pre></div>
-
-<h2>AUX headers</h2>
+<p>##AUX headers</p>
 
 <ol>
-<li>USER</li>
-<li>PID<br></li>
-<li>%CPU </li>
-<li>%MEM</li>
-<li>VSZ</li>
-<li>RSS</li>
-<li>TT</li>
-<li>STAT</li>
-<li>STARTED</li>
-<li>TIME</li>
-<li>COMMAND</li>
+  <li>USER</li>
+  <li>PID</li>
+  <li>%CPU</li>
+  <li>%MEM</li>
+  <li>VSZ</li>
+  <li>RSS</li>
+  <li>TT</li>
+  <li>STAT</li>
+  <li>STARTED</li>
+  <li>TIME</li>
+  <li>COMMAND</li>
 </ol>
 
-<p>Most of the time, you only need to care about <strong>USER</strong>, <strong>PID</strong> and <strong>COMMAND</strong>. If you have </p>
+<p>Most of the time, you only need to care about <strong>USER</strong>, <strong>PID</strong> and <strong>COMMAND</strong>. If you have</p>
+
 
           <div class="post-readmore">
               <a href="/web/2012/12/17/kill-process-master.html" class="more-link">Read More &rarr;</a>
@@ -267,25 +308,23 @@
 
           <span class="post-date">21 Jun 2012</span>
 
-          <p>I think on duplicate update has to be the best MySQL function. If you are using a 2 step approach to determine whether your row exists like &#39;mysql_num_rows&#39; which is <a href="">terrible</a> or SELECT COUNT(id) FROM table and then insert your data in another query.</p>
+          <p>I think on duplicate update has to be the best MySQL function. If you are using a 2 step approach to determine whether your row exists like ‘mysql_num_rows’ which is <a href="">terrible</a> or SELECT COUNT(id) FROM table and then insert your data in another query.</p>
 
 <p>You should really be only using 1 single query which is <span class="impt">insert on duplicate update</span>.</p>
 
-<div class="highlight"><pre><code class="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">table</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="k">c</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-  <span class="k">ON</span> <span class="n">DUPLICATE</span> <span class="k">KEY</span> <span class="k">UPDATE</span> <span class="k">c</span><span class="o">=</span><span class="k">c</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-</code></pre></div>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">table</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="k">c</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+  <span class="k">ON</span> <span class="n">DUPLICATE</span> <span class="k">KEY</span> <span class="k">UPDATE</span> <span class="k">c</span><span class="o">=</span><span class="k">c</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span></code></pre></figure>
 
 <p>By default, if the query is an update, it does not return a meaningful insert_id. So to work around that, I always use it as such:</p>
 
-<div class="highlight"><pre><code class="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">users</span> <span class="p">(</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">created</span><span class="p">,</span> <span class="n">modified</span>  
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">users</span> <span class="p">(</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">created</span><span class="p">,</span> <span class="n">modified</span>  
 <span class="k">VALUES</span> <span class="p">(</span>
-    <span class="s1">&#39;John Doe&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;username@example.com&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;2011-01-01 00:00:00&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;2011-01-01 00:00:00&#39;</span>
+	<span class="s1">'John Doe'</span><span class="p">,</span>
+	<span class="s1">'username@example.com'</span><span class="p">,</span>
+	<span class="s1">'2011-01-01 00:00:00'</span><span class="p">,</span>
+	<span class="s1">'2011-01-01 00:00:00'</span>
 <span class="p">)</span>
-  <span class="k">ON</span> <span class="n">DUPLICATE</span> <span class="k">KEY</span> <span class="k">UPDATE</span> <span class="n">id</span> <span class="o">=</span> <span class="n">LAST_INSERT_ID</span><span class="p">(</span> <span class="n">id</span> <span class="p">),</span> <span class="n">modified</span> <span class="o">=</span> <span class="k">VALUES</span><span class="p">(</span> <span class="n">modified</span> <span class="p">);</span>
-</code></pre></div>
+  <span class="k">ON</span> <span class="n">DUPLICATE</span> <span class="k">KEY</span> <span class="k">UPDATE</span> <span class="n">id</span> <span class="o">=</span> <span class="n">LAST_INSERT_ID</span><span class="p">(</span> <span class="n">id</span> <span class="p">),</span> <span class="n">modified</span> <span class="o">=</span> <span class="k">VALUES</span><span class="p">(</span> <span class="n">modified</span> <span class="p">);</span></code></pre></figure>
 
 <p>If you need to update more values, just stick in a comma and add in the format COLUMN = VALUES( COLUMN ).</p>
 
@@ -315,11 +354,11 @@
     
     <div class="footer">
     <div class="container">
-        <p class="copyright">&copy; 2014. Ryan-YJL. Powered by <a href="http://jekyllrb.com/">Jekyll</a>. Hosted by <a href="https://github.com">GitHub</a>.
+        <p class="copyright">&copy; 2016. Ryan-YJL. Powered by <a href="http://jekyllrb.com/">Jekyll</a>. Hosted by <a href="https://github.com">GitHub</a>.
         <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." style="float: right;"><img alt="Creative Commons License" style="margin-top: 1px; border-width: 0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a> 
     </div>
 </div>
-<script src='/assets/js/scrollReveal.js'></script>
+<script src='http://localhost:4000/assets/js/scrollReveal.js'></script>
 <script>
   window.scrollReveal = new scrollReveal();
 </script>

@@ -8,9 +8,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
         
-             
-             
-        
         <title>Posts tagged "fedora" &middot; Ryan Yang</title>
         <!-- SEO -->
         <meta property="og:title" content="Posts tagged "fedora" &middot; Ryan Yang" />
@@ -19,14 +16,14 @@
         
         
         <meta name="author" content="Ryan Yang" />
-        <link rel="canonical" href="/tag/fedora/index.html" />
+        <link rel="canonical" href="/tag/fedora/" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content="/tag/fedora/index.html" />
+        <meta property="og:url" content="/tag/fedora/" />
         <meta property="og:site_name" content="Ryan Yang" />
         <meta property="article:publisher" content="https://www.facebook.com/RyanYJL" />
         <meta property="article:section" content="Article" />
-        <meta property="og:image" content="/assets/img/logo.png" />
+        <meta property="og:image" content="http://localhost:4000/assets/img/logo.png" />
         <meta property="og:image:width" content="300" />
         <meta property="og:image:height" content="300" />
         <meta name="twitter:card" content="summary"/>
@@ -49,7 +46,7 @@
         <link rel="shortcut icon" href="/assets/favicon.ico">
 
         <!-- RSS -->
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="http://localhost:4000/atom.xml">
         <script>
             if (navigator.userAgent.indexOf('Mac OS X') == -1) {
                 $('head').append('<link rel="stylesheet" href="/assets/css/non-mac.css" type="text/css" />');
@@ -78,12 +75,12 @@
                 <div class="menu clearfix">
                     
                     
-                    <!--<div><a class="" href="/category/everything/">Everything</a></div>-->
-                    <div><a class="active" href="/category/web/">Web</a></div>
-                    <div><a class="" href="/play/">Play</a></div>
-                    <div><a class="" href="/portfolio/">Portfolio</a></div>
-                    <div><a class="" href="/pinboard/">Pinboard</a></div>
-                    <div><a class="" href="/archive/">Archive</a></div>
+                    <!--<div><a class="" href="http://localhost:4000/category/everything/">Everything</a></div>-->
+                    <div><a class="active" href="http://localhost:4000/category/web/">Web</a></div>
+                    <div><a class="" href="http://localhost:4000/play/">Play</a></div>
+                    <div><a class="" href="http://localhost:4000/portfolio/">Portfolio</a></div>
+                    <div><a class="" href="http://localhost:4000/pinboard/">Pinboard</a></div>
+                    <div><a class="" href="http://localhost:4000/archive/">Archive</a></div>
                     <div class="social">
 <!--                        
                         <a class="social-icon" href=""><span class="fa fa-tumblr"></span></a>
@@ -115,7 +112,7 @@
                         }
                         //-->
                         </script>
-                        <a class="social-icon" href="/atom.xml"><span class="fa fa-rss"></span></a>
+                        <a class="social-icon" href="http://localhost:4000/atom.xml"><span class="fa fa-rss"></span></a>
                     </div>
                 </div>
             </div>  
@@ -127,8 +124,8 @@
         
         <div class="breadcrumbs">
             <a href="/">Home</a> &raquo; 
-            <a href="/tags/">Tags</a> &raquo;
-            <a href="/tag/fedora/">Fedora</a>
+            <a href="http://localhost:4000/tags/">Tags</a> &raquo;
+            <a href="http://localhost:4000/tag/fedora/">Fedora</a>
         </div>
         <h1 class="page-title non-impt">Tagged 'Fedora'</h1>
     
@@ -145,22 +142,24 @@
                 <div class="post-date">November 20, 2013</div>
               <p>Here is my list of mostly frequently used <strong>yum</strong> commmnds that will help you handle most if not all of the package management <u>you will ever need</u>.</p>
 
-<h2>Updating repositories</h2>
+<p>##Updating repositories</p>
 
 <p>If you are using <strong>Fedora</strong>, then you usually have the latest repository without doing much.</p>
 
 <p>If you are using <strong>CentOS</strong> or <strong>RHEL</strong>, then you best bet is to get the repo from <a href="https://webtatic.com/projects/yum-repository/">webtatic</a>.
-The installation of the repo is simply &quot;rpm -Uvh&quot; followed by the repo url.</p>
+The installation of the repo is simply “rpm -Uvh” followed by the repo url.</p>
 
-<h3>YUM</h3>
+<h3 id="yum">YUM</h3>
 
 <p>Searching for package</p>
 
-<div class="highlight"><pre><code class="bash"><span class="c"># search package name &amp; description by term</span>
-<span class="nv">$ </span>yum search tomcat
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># search package name &amp; description by term
+</span>
+<span class="gp">$ </span>yum search tomcat
 
-<span class="c"># search package name that start with term</span>
-<span class="nv">$ </span>yum list tomcat
+<span class="c"># search package name that start with term
+</span>
+<span class="gp">$ </span>yum list tomcat
 tomcat7-common
 tomcat7
 tomcat7-admin
@@ -168,58 +167,66 @@ tomcat7-examples
 tomcat7-docs
 tomcat7-user
 
-<span class="c"># list all installed packages in system </span>
-<span class="nv">$ </span>yum list installed
-</code></pre></div>
+<span class="c"># list all installed packages in system 
+</span>
+<span class="gp">$ </span>yum list installed</code></pre></figure>
 
 <p>Upgrading packages</p>
 
-<div class="highlight"><pre><code class="bash"><span class="c"># upgrade packages (safe)</span>
-<span class="nv">$ </span>yum update
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># upgrade packages (safe)
+</span>
+<span class="gp">$ </span>yum update
 
-<span class="c"># upgrade packages and remove existing obsolete packages</span>
-<span class="c"># which you may be using</span>
-<span class="nv">$ </span>yum upgrade
-</code></pre></div>
+<span class="c"># upgrade packages and remove existing obsolete packages
+</span>
+<span class="c"># which you may be using
+</span>
+<span class="gp">$ </span>yum upgrade</code></pre></figure>
 
 <p>Installing packages</p>
 
-<div class="highlight"><pre><code class="bash"><span class="c"># install specific package</span>
-<span class="nv">$ </span>yum install tomcat7
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># install specific package
+</span>
+<span class="gp">$ </span>yum install tomcat7
 
-<span class="c"># remove wildcard package</span>
-<span class="nv">$ </span>yum install <span class="s1">&#39;tomcat7*&#39;</span>
+<span class="c"># remove wildcard package
+</span>
+<span class="gp">$ </span>yum install <span class="s1">'tomcat7*'</span>
 
-<span class="c"># install package group</span>
-<span class="nv">$ </span>yum groupinstall <span class="s1">&#39;Development Tools&#39;</span>
-</code></pre></div>
+<span class="c"># install package group
+</span>
+<span class="gp">$ </span>yum groupinstall <span class="s1">'Development Tools'</span></code></pre></figure>
 
 <p>Removing packages</p>
 
-<div class="highlight"><pre><code class="bash"><span class="c"># install specific package</span>
-<span class="nv">$ </span>yum erase tomcat7
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># install specific package
+</span>
+<span class="gp">$ </span>yum erase tomcat7
 
-<span class="c"># remove wildcard package</span>
-<span class="nv">$ </span>yum erase <span class="s1">&#39;tomcat7*&#39;</span>
-</code></pre></div>
+<span class="c"># remove wildcard package
+</span>
+<span class="gp">$ </span>yum erase <span class="s1">'tomcat7*'</span></code></pre></figure>
 
 <p>Checking for broken packages/ dependencies</p>
 
-<div class="highlight"><pre><code class="bash"><span class="c"># update package cache and check for broken dependencies</span>
-<span class="nv">$ </span>yum check
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># update package cache and check for broken dependencies
+</span>
+<span class="gp">$ </span>yum check
 
-<span class="c"># check for packages to update</span>
-<span class="nv">$ </span>yum check-update
+<span class="c"># check for packages to update
+</span>
+<span class="gp">$ </span>yum check-update
 
-<span class="c"># reinstall package and dependencies</span>
-<span class="nv">$ </span>yum reinstall
-</code></pre></div>
+<span class="c"># reinstall package and dependencies
+</span>
+<span class="gp">$ </span>yum reinstall</code></pre></figure>
 
 <p>Cleaning up archive files</p>
 
-<div class="highlight"><pre><code class="bash"><span class="c"># delete all cached data</span>
-<span class="nv">$ </span>yum clean
-</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># delete all cached data
+</span>
+<span class="gp">$ </span>yum clean</code></pre></figure>
+
 
               <div class="post-readmore">
                   <a href="/web/2013/11/20/package-management-command-cheat-sheet-for-redhat-linux.html" class="more-link">Read More &rarr;</a>
@@ -230,8 +237,6 @@ tomcat7-user
         </div>
     
 
-    
-        
     
 
         <div class="pagination">
@@ -250,11 +255,11 @@ tomcat7-user
 
     <div class="footer">
     <div class="container">
-        <p class="copyright">&copy; 2014. Ryan-YJL. Powered by <a href="http://jekyllrb.com/">Jekyll</a>. Hosted by <a href="https://github.com">GitHub</a>.
+        <p class="copyright">&copy; 2016. Ryan-YJL. Powered by <a href="http://jekyllrb.com/">Jekyll</a>. Hosted by <a href="https://github.com">GitHub</a>.
         <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" title="This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." style="float: right;"><img alt="Creative Commons License" style="margin-top: 1px; border-width: 0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a> 
     </div>
 </div>
-<script src='/assets/js/scrollReveal.js'></script>
+<script src='http://localhost:4000/assets/js/scrollReveal.js'></script>
 <script>
   window.scrollReveal = new scrollReveal();
 </script>
