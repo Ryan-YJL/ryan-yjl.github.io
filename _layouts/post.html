@@ -1,0 +1,60 @@
+---
+layout: default
+---
+
+<div class="content container">
+    <div class="breadcrumbs">
+        <a href="/">Home</a> &raquo; 
+        <a href="{{ site.url }}/category/{{ page.category }}">{{ page.category | capitalize }}</a> &raquo; 
+        <a href="{{ page.url }}">{{ page.title }}</a>
+    </div>
+    <div class="post">
+      <h1 class="post-title">{{ page.title }}</h1>
+      <div class="post-date">{{ page.date | date: "%B %-d, %Y" }}</div>
+      <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+      <!--<div class="post-date post-details">Published {{ page.date | date: "%B %-d, %Y" }} by <a href="{{ site.url }}/about/">{{ site.author.name }}</a></div>-->
+      {{ content }}
+
+      <div class="post-date">( Last modified {{ page.path | file_date | date: "%-d %B %Y, %-I:%M %p" }} )</div>
+    
+        {% if page.tags != null %}
+        <ul class="tags clearfix">
+          {% for tag in page.tags %}
+            <li><a href="{{ site.url }}/tag/{{ tag }}">{{ tag }}</a> </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        
+        <div class="addthis_sharing_toolbox"></div>
+    </div>
+    {% include comments.html %}
+    
+    <div class="related">
+      <h2>Related Posts</h2>
+      <ul class="related-posts">
+        {% for post in site.related_posts limit:3 %}
+          <li>
+              <div class="archive-item">
+                <span class="post-date archive-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+                <a href="{{ post.url }}" class="archive-title">
+                  {{ post.title }}
+                </a>
+            </div>
+
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div>
+        <h2>Tags</h2>
+        {% include tags.html %}
+    </div>
+</div>
+<style>
+    .addthis_sharing_toolbox {
+        margin: 1rem 0 0;
+    }
+</style>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53d865985f233b7e"></script>

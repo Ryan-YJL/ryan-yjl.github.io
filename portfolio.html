@@ -1,0 +1,37 @@
+---
+layout: page
+permalink: /portfolio/
+title: Portfolio
+description: My portfolio of web startup developments
+---
+
+<div class="portfolio">
+    <div class="logo_ticketdrive" data-scroll-reveal="enter bottom, ease-out 50px after 0.35s"><a href="#" class="portfolio-logo" data-images='[ {"src":"{{ site.static_url }}/img/portfolio/ticketdrive/1_home.png"}, {"src":"{{ site.static_url }}/img/portfolio/ticketdrive/2_events.png"}, {"src":"{{ site.static_url }}/img/portfolio/ticketdrive/3_event.png"}, {"src":"{{ site.static_url }}/img/portfolio/ticketdrive/4_booking.png"}, {"src":"{{ site.static_url }}/img/portfolio/ticketdrive/5_booking.png"}, {"src":"{{ site.static_url }}/img/portfolio/ticketdrive/6_order.png"} ]'></a></div>
+    <div class="logo_openauc" data-scroll-reveal="enter bottom, ease-out 50px after 0.7s"><a href="#" class="portfolio-logo" data-images='[ {"src":"{{ site.static_url }}/img/portfolio/openauc/1_home.png"}, {"src":"{{ site.static_url }}/img/portfolio/openauc/2_auction.png"}, {"src":"{{ site.static_url }}/img/portfolio/openauc/3_account.png"}, {"src":"{{ site.static_url }}/img/portfolio/openauc/4_selling.png"}, {"src":"{{ site.static_url }}/img/portfolio/openauc/5_schedule.png"} ]'></a></div>
+    <div class="logo_chutto" data-scroll-reveal="enter bottom, ease-out 50px after 1.05s"><a href="#" class="portfolio-logo" data-images='[ {"src":"{{ site.static_url }}/img/portfolio/chutto/1_home.png"}, {"src":"{{ site.static_url }}/img/portfolio/chutto/2_product.png"}, {"src":"{{ site.static_url }}/img/portfolio/chutto/3_register.png"} ]'></a></div>
+    <div class="logo_writeville" data-scroll-reveal="enter bottom, ease-out 50px after 1.40s"><a href="#" class="portfolio-logo" data-images='[ {"src":"{{ site.static_url }}/img/portfolio/writeville/1_home.png"}, {"src":"{{ site.static_url }}/img/portfolio/writeville/2_blog.png"}, {"src":"{{ site.static_url }}/img/portfolio/writeville/3_desk.png"}, {"src":"{{ site.static_url }}/img/portfolio/writeville/4_inbox.png"}, {"src":"{{ site.static_url }}/img/portfolio/writeville/5_projects.png"} ]'></a></div>
+    <div class="logo_sharealink" data-scroll-reveal="enter bottom, ease-out 50px after 1.75s"><a href="#" class="portfolio-logo" data-images='[ {"src":"{{ site.static_url }}/img/portfolio/sharealink/1_home.png"}, {"src":"{{ site.static_url }}/img/portfolio/sharealink/2_link.png"} ]'></a></div>
+    <div class="logo_setcron" data-scroll-reveal="enter bottom, ease-out 50px after 2.10s"><a href="#" class="portfolio-logo" data-images='[ {"src":"{{ site.static_url }}/img/portfolio/setcron/1_home.png","title":"Available on https://www.setcron.com"}, {"src":"{{ site.static_url }}/img/portfolio/setcron/2_about.png","title":"Available on https://www.setcron.com"}, {"src":"{{ site.static_url }}/img/portfolio/setcron/3_api.png","title":"Available on https://www.setcron.com"}, {"src":"{{ site.static_url }}/img/portfolio/setcron/4_tasks.png","title":"Available on https://www.setcron.com"} ]'></a></div>
+</div>
+
+<script>
+    $('.portfolio-logo').each(function(i,e){
+        var items = null;
+        var images = $(e).attr('data-images');
+        if(images){
+            items = $.parseJSON(images);
+        }
+        console.log(items);
+        $(e).magnificPopup({
+            items: items,
+            gallery: {
+              enabled: true
+            },
+            image: {
+                verticalFit: false
+            },
+            type: 'image' // this is a default type
+        });
+    });
+    
+</script>

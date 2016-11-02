@@ -1,0 +1,24 @@
+---
+layout: default
+permalink: /archive/
+title: "Archive"
+description: "An archive of all my posts."
+---
+
+<div class="container content">
+    <div class="breadcrumbs">
+        <a href="{{ site.url }}">Home</a> &raquo; 
+       <a href="{{ site.url }}/archive/">Archive</a>
+    </div>
+    <h1 class="page-title non-impt"><a href="{{ site.url }}/archive/">Archive</a></h1>
+<div class="archive">
+  {% for post in site.posts %}
+    <div class="archive-item">
+      <span class="post-date archive-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+      <a class="archive-title" href="{{ post.url }}">
+        {{ post.title }}
+      </a>
+    </div>
+  {% endfor %}
+</div>
+</div>

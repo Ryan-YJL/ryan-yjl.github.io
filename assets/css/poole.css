@@ -188,6 +188,9 @@ pre code {
   margin-bottom: 0;
 }
 
+figure {
+  margin: 0;
+}
 /* Quotes */
 blockquote {
   padding: .5rem 1rem;

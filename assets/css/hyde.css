@@ -342,7 +342,7 @@ ul.tags-normal {
   font-size: 0.8rem;
 }
 .archive-item .tags {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 @media (min-width: 34rem) {
